@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BurgerMVC.DataLayer.Concrete
+namespace BurgerMVC.EntityLayer.Concrete
 {
-    public class AppContext
+    public class AppUser
     {
+
     }
 }
