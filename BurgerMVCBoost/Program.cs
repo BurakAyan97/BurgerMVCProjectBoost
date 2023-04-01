@@ -1,4 +1,5 @@
 using BurgerMVC.DataLayer.Concrete;
+using BurgerMVC.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
