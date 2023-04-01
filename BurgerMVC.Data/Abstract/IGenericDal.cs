@@ -16,7 +16,5 @@ namespace BurgerMVC.DataLayer.Abstract
         List<T> GetList();
         List<T> GetListByFilter(Expression<Func<T, bool>> filter);
 
-
-
     }
 }

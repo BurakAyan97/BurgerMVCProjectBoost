@@ -33,22 +33,17 @@ namespace BurgerMVC.BusinessLayer.Concrete
         {
             return _dessertDal.Get(filter);
         }
-
-        public Dessert TGetByID(Dessert t)
-        {
-            return _dessertDal.TGetByID(t);
-        }
-
+                
         public List<Dessert> TGetList(Dessert t)
         {
             return _dessertDal.GetList();
         }
 
-        public List<Dessert> TList(Expression<Func<Dessert, bool>> filter)
+        public List<Dessert> TGetListByFilter(Expression<Func<Dessert, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _dessertDal.GetListByFilter(filter);
         }
-
+                
         public void TUpdate(Dessert t)
         {
             _dessertDal.Update(t);
