@@ -8,10 +8,6 @@ namespace BurgerMVCBoost.AutoMapper
     {
         public MapperProfile()
         {
-            CreateMap<Dessert, DessertVM>().ReverseMap();
-            CreateMap<Extra, ExtraVM>().ReverseMap();
-            CreateMap<Menu, MenuVM>().ReverseMap();
-            CreateMap<Sauce, SauceVM>().ReverseMap();
         }
     }
 }

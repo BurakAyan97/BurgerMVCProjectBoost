@@ -34,7 +34,7 @@ namespace BurgerMVC.BusinessLayer.Concrete
             return _extraDal.Get(filter);
         }
 
-        public List<Extra> TGetList(Extra t)
+        public List<Extra> TGetList()
         {
             return _extraDal.GetList();
         }

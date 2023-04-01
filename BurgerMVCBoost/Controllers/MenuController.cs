@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BurgerMVC.BusinessLayer.Concrete;
+using BurgerMVC.DataLayer.Concrete;
 using BurgerMVC.DataLayer.EntityFramework;
 using BurgerMVC.EntityLayer.Concrete;
 using BurgerMVCBoost.ViewModel;
@@ -9,21 +10,22 @@ namespace BurgerMVCBoost.Controllers
 {
     public class MenuController : Controller
     {
-        private readonly IMapper _mapper;
-
-        public MenuController(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
-
         MenuManager mm = new MenuManager(new EfMenuDal());
-        public IActionResult MenuList()
+        ExtraManager em = new ExtraManager(new EfExtraDal());
+        DessertManager dm = new DessertManager(new EfDessertDal());
+        SauceManager sm = new SauceManager(new EfSauceDal());
+        public IActionResult Menu()
         {
-            AllMenuVM vm = new AllMenuVM();
-            _mapper.Map()
-            
-            
+            AllMenuVM vm = new AllMenuVM()
+            {
+                Extras = em.TGetList(),
+                Desserts = dm.TGetList(),
+                Sauces = sm.TGetList(),
+                Menus = mm.TGetList(),
+            };
             return View(vm);
+
+
         }
 
 

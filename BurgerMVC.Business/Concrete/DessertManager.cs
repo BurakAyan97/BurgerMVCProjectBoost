@@ -34,7 +34,7 @@ namespace BurgerMVC.BusinessLayer.Concrete
             return _dessertDal.Get(filter);
         }
                 
-        public List<Dessert> TGetList(Dessert t)
+        public List<Dessert> TGetList()
         {
             return _dessertDal.GetList();
         }

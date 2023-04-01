@@ -35,7 +35,7 @@ namespace BurgerMVC.BusinessLayer.Concrete
             return _sauceDal.Get(filter);
         }
 
-        public List<Sauce> TGetList(Sauce t)
+        public List<Sauce> TGetList()
         {
             return _sauceDal.GetList();
         }

@@ -27,14 +27,14 @@
                                 </div>
                                 <div class="detail-box">
                                     <h5>
-                                        Delicious Pizza
+                                        @extra.Name
                                     </h5>
                                     <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+                                        asdsada
                                     </p>
                                     <div class="options">
                                         <h6>
-                                            $20
+                                            @extra.Price
                                         </h6>
                                         <a href="">
 
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 }
-                @foreach (var item in Model.Menus)
+                @foreach (var menu in Model.Menus)
                 {
 
 
@@ -57,14 +57,14 @@
                                 </div>
                                 <div class="detail-box">
                                     <h5>
-                                        Delicious Burger
+                                       @menu.Name
                                     </h5>
                                     <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+                                        @menu.Description
                                     </p>
                                     <div class="options">
                                         <h6>
-                                            $15
+                                            @menu.Price
                                         </h6>
                                         <a href="">
 
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                 }
-                @foreach (var item in Model.Desserts)
+                @foreach (var dessert in Model.Desserts)
                 {
 
 
@@ -87,14 +87,14 @@
                                 </div>
                                 <div class="detail-box">
                                     <h5>
-                                        Delicious Pizza
+                                        @dessert.Name
                                     </h5>
                                     <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
+                                        asdsadadasd
                                     </p>
                                     <div class="options">
                                         <h6>
-                                            $17
+                                           @dessert.Price
                                         </h6>
                                         <a href="">
 
