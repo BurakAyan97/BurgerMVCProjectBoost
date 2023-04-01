@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BurgerMVC.EntityLayer.Concrete
 {
-    public class OrderDetails
+    public abstract class OrderDetails
     {
         public int OrderDetailsID { get; set; }
         public int OrderID { get; set; }
