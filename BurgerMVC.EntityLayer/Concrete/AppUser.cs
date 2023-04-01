@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +18,10 @@ namespace BurgerMVC.EntityLayer.Concrete
         public bool isActive { get; set; }
 
         //Navigation Props
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Dessert> Orders { get; set; }
         public AppUser()
         {
-            Orders = new HashSet<Order>();
+            Orders = new HashSet<Dessert>();
         }
 
     }

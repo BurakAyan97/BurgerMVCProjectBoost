@@ -19,6 +19,6 @@ namespace BurgerMVC.EntityLayer.Concrete
 
         //Nav Props
         public int OrderID { get; set; }
-        public virtual Order Order { get; set; }
+        public virtual Dessert Order { get; set; }
     }
 }

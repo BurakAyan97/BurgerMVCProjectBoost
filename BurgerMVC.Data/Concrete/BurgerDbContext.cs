@@ -11,7 +11,7 @@ namespace BurgerMVC.DataLayer.Concrete
 {
     public class BurgerDbContext : IdentityDbContext<AppUser>
     {
-        public BurgerDbContext(DbContextOptions options) : base(options)
+        public BurgerDbContext(DbContextOptions<BurgerDbContext> options) : base(options)
         {
 
         }
@@ -29,7 +29,7 @@ namespace BurgerMVC.DataLayer.Concrete
         public DbSet<Dessert> Desserts { get; set; }
         public DbSet<Extra> Extras { get; set; }
         public DbSet<Menu> Menus { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<Dessert> Orders { get; set; }
 
     }
 }
