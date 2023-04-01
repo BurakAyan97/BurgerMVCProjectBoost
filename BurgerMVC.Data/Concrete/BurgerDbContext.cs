@@ -13,6 +13,7 @@ namespace BurgerMVC.DataLayer.Concrete
     {
         public BurgerDbContext(DbContextOptions options) : base(options)
         {
+
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
