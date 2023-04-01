@@ -13,7 +13,7 @@ namespace BurgerMVC.DataLayer.Configuration
     {
         public void Configure(EntityTypeBuilder<Sauce> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(x => x.ID);
         }
     }
 }

@@ -9,11 +9,16 @@ using System.Threading.Tasks;
 
 namespace BurgerMVC.DataLayer.Configuration
 {
-    public class OrderConfiguration : IEntityTypeConfiguration<Dessert>
+    public class OrderConfiguration : IEntityTypeConfiguration<Order>
     {
-        public void Configure(EntityTypeBuilder<Dessert> builder)
+        public void Configure(EntityTypeBuilder<Order> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(x => x.OrderID);
+
+            builder.HasOne(x => x.User).WithMany(x => x.Orders).HasForeignKey(x=>x.OrderID).OnDelete(DeleteBehavior.ClientSetNull);
+
+
+
         }
     }
 }

@@ -13,7 +13,11 @@ namespace BurgerMVC.DataLayer.Configuration
     {
         public void Configure(EntityTypeBuilder<Dessert> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(x => x.ID);
+
+            builder.Property(x => x.Price)
+                   .HasColumnType("money");
+
         }
     }
 }

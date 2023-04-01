@@ -18,10 +18,10 @@ namespace BurgerMVC.EntityLayer.Concrete
         public bool isActive { get; set; }
 
         //Navigation Props
-        public virtual ICollection<Dessert> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
         public AppUser()
         {
-            Orders = new HashSet<Dessert>();
+            Orders = new HashSet<Order>();
         }
 
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BurgerMVC.EntityLayer.Concrete
 {
-    public class Dessert
+    public class Order
     {
         public int OrderID { get; set; }
         public string OrderName { get; set; }
@@ -16,17 +16,10 @@ namespace BurgerMVC.EntityLayer.Concrete
         public OrderStatus Status { get; set; }
 
         //Nav Prop
-        public ICollection<Menu> Menus { get; set; }
-        public ICollection<Extra> Extras { get; set; }
-        public ICollection<Dessert> Desserts { get; set; }
-        public ICollection<Sauce> Sauces { get; set; }
-
-        public Dessert()
+        public ICollection<OrderDetails> OrderDetails { get; set; }
+        public Order()
         {
-            Menus = new HashSet<Menu>();
-            Extras = new HashSet<Extra>();
-            Desserts = new HashSet<Dessert>();
-            Sauces = new HashSet<Sauce>();
+            OrderDetails = new HashSet<OrderDetails>();
         }
 
         public string UserID { get; set; }

@@ -13,7 +13,7 @@ namespace BurgerMVC.DataLayer.Configuration
     {
         public void Configure(EntityTypeBuilder<Menu> builder)
         {
-            
+            builder.HasKey(x => x.ID);
         }
     }
 }
