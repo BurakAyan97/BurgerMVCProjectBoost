@@ -6,18 +6,14 @@ using System.Threading.Tasks;
 
 namespace BurgerMVC.EntityLayer.Concrete
 {
-    public class Dessert
+    public class Dessert : BaseEntity
     {
-        public int DessertID { get; set; }
-        public string DessertName { get; set; }
-        public decimal DessertPrice { get; set; }
-        public DateTime CreatedTime { get; set; } = DateTime.Now;
-        public DateTime UpdatedTime { get; set; }
-        public int DessertStock { get; set; }
-        public bool DessertStatus { get; set; }
-        
+
         //Nav props
-        public int OrderID { get; set; }
-        public virtual Order Order { get; set; }
+        public ICollection<OrderDetails> OrderDetails { get; set; }
+        public Dessert()
+        {
+            OrderDetails = new HashSet<OrderDetails>();
+        }
     }
 }

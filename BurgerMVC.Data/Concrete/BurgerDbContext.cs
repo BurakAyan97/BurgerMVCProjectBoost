@@ -11,9 +11,13 @@ namespace BurgerMVC.DataLayer.Concrete
 {
     public class BurgerDbContext : IdentityDbContext<AppUser>
     {
-        public BurgerDbContext(DbContextOptions options) : base(options)
+        public BurgerDbContext(DbContextOptions<BurgerDbContext> options) : base(options)
         {
 
+        }
+
+        public BurgerDbContext()
+        {
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -23,13 +27,13 @@ namespace BurgerMVC.DataLayer.Concrete
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-S2C7UGO;Database=BurgerMVCProjectDB;User ID=sa;Password=arkadas1");
+            optionsBuilder.UseSqlServer("Server=.;Database=BurgerDb2;Trusted_Connection=True;TrustServerCertificate=True");
             base.OnConfiguring(optionsBuilder);
         }
         public DbSet<Dessert> Desserts { get; set; }
         public DbSet<Extra> Extras { get; set; }
         public DbSet<Menu> Menus { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<Dessert> Orders { get; set; }
 
     }
 }

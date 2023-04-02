@@ -12,12 +12,9 @@ namespace BurgerMVC.DataLayer.Abstract
         void Insert(T t);
         void Update(T t);
         void Delete(T t);
-        T TGetByID(T t);
         T Get(Expression<Func<T, bool>> filter);
         List<T> GetList();
-        List<T> List(Expression<Func<T, bool>> filter);
-        
-        
+        List<T> GetListByFilter(Expression<Func<T, bool>> filter);
 
     }
 }

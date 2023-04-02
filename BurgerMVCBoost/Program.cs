@@ -1,3 +1,4 @@
+using AutoMapper;
 using BurgerMVC.DataLayer.Concrete;
 using BurgerMVC.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +12,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BurgerDbContext>();
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<BurgerDbContext>();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,7 +25,6 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
