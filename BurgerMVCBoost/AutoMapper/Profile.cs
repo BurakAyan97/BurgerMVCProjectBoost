@@ -8,6 +8,7 @@ namespace BurgerMVCBoost.AutoMapper
     {
         public MapperProfile()
         {
+            CreateMap<AppUser, UserVM>().ReverseMap();
         }
     }
 }

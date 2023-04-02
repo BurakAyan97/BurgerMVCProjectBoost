@@ -1,4 +1,3 @@
-using AutoMapper;
 using BurgerMVC.DataLayer.Concrete;
 using BurgerMVC.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BurgerDbContext>();
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<BurgerDbContext>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 var app = builder.Build();

@@ -15,7 +15,6 @@ namespace BurgerMVC.EntityLayer.Concrete
         public string Password { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public bool isActive { get; set; }
 
         //Navigation Props
         public virtual ICollection<Order> Orders { get; set; }

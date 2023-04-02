@@ -2,7 +2,7 @@
     <div class="container">
         <div class="heading_container">
             <h2>
-                Book A Table
+                Randevu Oluştur
             </h2>
         </div>
         <div class="row">
@@ -10,18 +10,21 @@
                 <div class="form_container">
                     <form action="">
                         <div>
-                            <input type="text" class="form-control" placeholder="Your Name" />
+                            <input type="text" class="form-control" placeholder="Adınız" />
                         </div>
                         <div>
-                            <input type="text" class="form-control" placeholder="Phone Number" />
+                            <input type="text" class="form-control" placeholder="Telefon Numaranız" />
                         </div>
                         <div>
-                            <input type="email" class="form-control" placeholder="Your Email" />
+                            <input type="email" class="form-control" placeholder="Mailiniz" />
                         </div>
                         <div>
                             <select class="form-control nice-select wide">
                                 <option value="" disabled selected>
-                                    How many persons?
+                                    Gelecek Kişi Sayısı
+                                </option>
+                                <option value="">
+                                    1
                                 </option>
                                 <option value="">
                                     2
@@ -42,16 +45,14 @@
                         </div>
                         <div class="btn_box">
                             <button>
-                                Book Now
+                                Oluştur
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="map_container ">
-                    <div id="googleMap"></div>
-                </div>
+                <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12046.372722325967!2d29.043541846016563!3d40.990388235308686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac790b17ba89d%3A0xd2d24ea0437a7ee2!2zS2FkxLFrw7Z5L8Swc3RhbmJ1bA!5e0!3m2!1str!2str!4v1646827091657!5m2!1str!2str" width="500px;" height="350px;" style="border: 0" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </div>

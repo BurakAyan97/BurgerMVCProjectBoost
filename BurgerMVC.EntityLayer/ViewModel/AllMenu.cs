@@ -15,5 +15,8 @@ namespace BurgerMVCBoost.ViewModel
 
         public List<Menu> Menus { get; set; }
         public Menu Menu { get; set; }
+
+        public List<Drink> Drinks { get; set; }
+        public Drink Drink { get; set; }
     }
 }

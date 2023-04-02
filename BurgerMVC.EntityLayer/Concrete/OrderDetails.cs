@@ -27,6 +27,9 @@ namespace BurgerMVC.EntityLayer.Concrete
         public int? DessertID { get; set; }
         public Dessert? Dessert { get; set; }
 
+        public int DrinkID { get; set; }
+        public Drink Drink { get; set; }
+
 
     }
 }

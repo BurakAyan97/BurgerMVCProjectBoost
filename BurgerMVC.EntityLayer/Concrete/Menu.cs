@@ -13,8 +13,6 @@ namespace BurgerMVC.EntityLayer.Concrete
         public string Description { get; set; }
         [NotMapped]
         public Size Size { get; set; }
-        [NotMapped]
-        public Drinks Drinks { get; set; }
 
         //Nav Props
         public ICollection<OrderDetails> OrderDetails { get; set; }

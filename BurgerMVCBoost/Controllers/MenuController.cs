@@ -10,22 +10,22 @@ namespace BurgerMVCBoost.Controllers
 {
     public class MenuController : Controller
     {
-        MenuManager mm = new MenuManager(new EfMenuDal());
-        ExtraManager em = new ExtraManager(new EfExtraDal());
-        DessertManager dm = new DessertManager(new EfDessertDal());
-        SauceManager sm = new SauceManager(new EfSauceDal());
+        MenuManager menuManager = new MenuManager(new EfMenuDal());
+        ExtraManager extraManager = new ExtraManager(new EfExtraDal());
+        DessertManager dessertManager = new DessertManager(new EfDessertDal());
+        SauceManager sauceManager = new SauceManager(new EfSauceDal());
+        DrinkManager drinkManager = new DrinkManager(new EfDrinkDal());
         public IActionResult Menu()
         {
             AllMenuVM vm = new AllMenuVM()
             {
-                Extras = em.TGetList(),
-                Desserts = dm.TGetList(),
-                Sauces = sm.TGetList(),
-                Menus = mm.TGetList(),
+                Extras = extraManager.TGetList(),
+                Desserts = dessertManager.TGetList(),
+                Sauces = sauceManager.TGetList(),
+                Menus = menuManager.TGetList(),
+                Drinks = drinkManager.TGetList(),
             };
             return View(vm);
-
-
         }
 
 

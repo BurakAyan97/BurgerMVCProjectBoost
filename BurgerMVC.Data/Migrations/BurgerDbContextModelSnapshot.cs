@@ -96,9 +96,6 @@ namespace BurgerMVC.DataLayer.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<bool>("isActive")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -145,6 +142,155 @@ namespace BurgerMVC.DataLayer.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Dessert");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7825),
+                            Image = "/ProjeResimler/Cikolata.png",
+                            Name = "Çikolata Cookie",
+                            Price = 10m,
+                            Status = true,
+                            Stock = 50
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7827),
+                            Image = "/ProjeResimler/Dondurma.png",
+                            Name = "Dondurma",
+                            Price = 10m,
+                            Status = true,
+                            Stock = 10
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7829),
+                            Image = "/ProjeResimler/Elmali.png",
+                            Name = "Elmalı Turta",
+                            Price = 25m,
+                            Status = true,
+                            Stock = 70
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7831),
+                            Image = "/ProjeResimler/sufle.png",
+                            Name = "Sufle",
+                            Price = 30m,
+                            Status = true,
+                            Stock = 45
+                        },
+                        new
+                        {
+                            ID = 5,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7833),
+                            Image = "/ProjeResimler/sundae.png",
+                            Name = "Sundae",
+                            Price = 17m,
+                            Status = true,
+                            Stock = 100
+                        });
+                });
+
+            modelBuilder.Entity("BurgerMVC.EntityLayer.Concrete.Drink", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Stock")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Drinks");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7854),
+                            Image = "/ProjeResimler/Ayran.png",
+                            Name = "Ayran",
+                            Price = 12m,
+                            Status = true,
+                            Stock = 250
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7856),
+                            Image = "/ProjeResimler/Cola.png",
+                            Name = "Kola",
+                            Price = 16m,
+                            Status = true,
+                            Stock = 450
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7857),
+                            Image = "/ProjeResimler/Fanta.png",
+                            Name = "Fanta",
+                            Price = 16m,
+                            Status = true,
+                            Stock = 350
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7883),
+                            Image = "/ProjeResimler/Icetea.png",
+                            Name = "Ice Tea",
+                            Price = 14m,
+                            Status = true,
+                            Stock = 270
+                        },
+                        new
+                        {
+                            ID = 5,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7885),
+                            Image = "/ProjeResimler/MeyveSuyu.png",
+                            Name = "Meyve Suyu",
+                            Price = 10m,
+                            Status = true,
+                            Stock = 400
+                        },
+                        new
+                        {
+                            ID = 6,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7887),
+                            Image = "/ProjeResimler/Sprite.png",
+                            Name = "Sprite",
+                            Price = 14m,
+                            Status = true,
+                            Stock = 130
+                        });
                 });
 
             modelBuilder.Entity("BurgerMVC.EntityLayer.Concrete.Extra", b =>
@@ -180,6 +326,58 @@ namespace BurgerMVC.DataLayer.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Extras");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7802),
+                            Image = "/ProjeResimler/Patates.jpg",
+                            Name = "Patates Kızartması",
+                            Price = 12m,
+                            Status = true,
+                            Stock = 350
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7804),
+                            Image = "/ProjeResimler/Tender.png",
+                            Name = "Tavuk Tender",
+                            Price = 20m,
+                            Status = true,
+                            Stock = 350
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7806),
+                            Image = "/ProjeResimler/sogan.jpg",
+                            Name = "Soğan Halkası",
+                            Price = 17m,
+                            Status = true,
+                            Stock = 350
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7807),
+                            Image = "/ProjeResimler/Nugget.png",
+                            Name = "Nugget",
+                            Price = 16m,
+                            Status = true,
+                            Stock = 350
+                        },
+                        new
+                        {
+                            ID = 5,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7809),
+                            Image = "/ProjeResimler/Citir.png",
+                            Name = "Çıtır Tavuk",
+                            Price = 22m,
+                            Status = true,
+                            Stock = 350
+                        });
                 });
 
             modelBuilder.Entity("BurgerMVC.EntityLayer.Concrete.Menu", b =>
@@ -219,6 +417,52 @@ namespace BurgerMVC.DataLayer.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Menus");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7623),
+                            Description = "Burger(Balık+Domates+Peynir+Turşu)+Patates(200 gr)+İçecek(Kola)",
+                            Image = "/ProjeResimler/BalikBurger.jpg",
+                            Name = "Balık Burger Menu",
+                            Price = 100m,
+                            Status = true,
+                            Stock = 250
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7626),
+                            Description = "Burger(2 Köfte+Marul+Peynir+Mayonez)+Patates(200gr)+İçecek(Ice Tea)",
+                            Image = "/ProjeResimler/DoubleBurger.jpg",
+                            Name = "Double Burger Menu",
+                            Price = 95m,
+                            Status = true,
+                            Stock = 250
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7628),
+                            Description = "Burger(Tavuk+Marul+Domates+Çıtır Soğan)+Patates(200gr)+İçecek(Ayran)",
+                            Image = "/ProjeResimler/TavukBurger.jpg",
+                            Name = "Tavuk Burger Menu",
+                            Price = 55m,
+                            Status = true,
+                            Stock = 250
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7630),
+                            Description = "Burger(Siyah Ekmek+240gr Köfte+Turşu+Karamelize Soğan)+Patates(200gr)+İçecek(Fanta)",
+                            Image = "/ProjeResimler/BlackBurger.jpg",
+                            Name = "Black Burger Menu",
+                            Price = 120m,
+                            Status = true,
+                            Stock = 250
+                        });
                 });
 
             modelBuilder.Entity("BurgerMVC.EntityLayer.Concrete.Order", b =>
@@ -264,6 +508,9 @@ namespace BurgerMVC.DataLayer.Migrations
                     b.Property<int?>("DessertID")
                         .HasColumnType("int");
 
+                    b.Property<int>("DrinkID")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ExtraID")
                         .HasColumnType("int");
 
@@ -279,6 +526,8 @@ namespace BurgerMVC.DataLayer.Migrations
                     b.HasKey("OrderDetailsID");
 
                     b.HasIndex("DessertID");
+
+                    b.HasIndex("DrinkID");
 
                     b.HasIndex("ExtraID");
 
@@ -324,6 +573,88 @@ namespace BurgerMVC.DataLayer.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Sauce");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7770),
+                            Image = "/ProjeResimler/Ketcap.png",
+                            Name = "Ketçap",
+                            Price = 3m,
+                            Status = true,
+                            Stock = 250
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7772),
+                            Image = "/ProjeResimler/Acisos.png",
+                            Name = "Acı Sos",
+                            Price = 3m,
+                            Status = true,
+                            Stock = 350
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7774),
+                            Image = "/ProjeResimler/Barbakü.png",
+                            Name = "Barbekü Sosu",
+                            Price = 3m,
+                            Status = true,
+                            Stock = 350
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7775),
+                            Image = "/ProjeResimler/Buffalo.png",
+                            Name = "Buffalo Sosu",
+                            Price = 3m,
+                            Status = true,
+                            Stock = 400
+                        },
+                        new
+                        {
+                            ID = 5,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7777),
+                            Image = "/ProjeResimler/Hardal.png",
+                            Name = "Hardal Sosu",
+                            Price = 3m,
+                            Status = true,
+                            Stock = 150
+                        },
+                        new
+                        {
+                            ID = 6,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7779),
+                            Image = "/ProjeResimler/Ranch.png",
+                            Name = "Ranch Sosu",
+                            Price = 3m,
+                            Status = true,
+                            Stock = 650
+                        },
+                        new
+                        {
+                            ID = 7,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7781),
+                            Image = "/ProjeResimler/Mayonez.png",
+                            Name = "Mayonez",
+                            Price = 3m,
+                            Status = true,
+                            Stock = 220
+                        },
+                        new
+                        {
+                            ID = 8,
+                            CreatedTime = new DateTime(2023, 4, 2, 14, 22, 45, 652, DateTimeKind.Local).AddTicks(7783),
+                            Image = "/ProjeResimler/Sarımsaklı.png",
+                            Name = "Sarımsaklı Mayonez",
+                            Price = 3m,
+                            Status = true,
+                            Stock = 345
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -476,6 +807,12 @@ namespace BurgerMVC.DataLayer.Migrations
                         .WithMany("OrderDetails")
                         .HasForeignKey("DessertID");
 
+                    b.HasOne("BurgerMVC.EntityLayer.Concrete.Drink", "Drink")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("DrinkID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BurgerMVC.EntityLayer.Concrete.Extra", "Extra")
                         .WithMany("OrderDetails")
                         .HasForeignKey("ExtraID");
@@ -497,6 +834,8 @@ namespace BurgerMVC.DataLayer.Migrations
                         .HasForeignKey("SauceID");
 
                     b.Navigation("Dessert");
+
+                    b.Navigation("Drink");
 
                     b.Navigation("Extra");
 
@@ -564,6 +903,11 @@ namespace BurgerMVC.DataLayer.Migrations
                 });
 
             modelBuilder.Entity("BurgerMVC.EntityLayer.Concrete.Dessert", b =>
+                {
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("BurgerMVC.EntityLayer.Concrete.Drink", b =>
                 {
                     b.Navigation("OrderDetails");
                 });

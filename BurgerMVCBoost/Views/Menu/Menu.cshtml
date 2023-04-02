@@ -17,6 +17,7 @@
             <li data-filter=".menu">Menüler</li>
             <li data-filter=".extra">Yan Ürünler</li>
             <li data-filter=".dessert">Tatlılar</li>
+            <li data-filter=".drink">İçecekler</li>
         </ul>
 
         <div class="filters-content">
@@ -27,7 +28,7 @@
                         <div class="box">
                             <div>
                                 <div class="img-box">
-                                    <img src="images/f1.png" alt="">
+                                    <img src="@extra.Image" alt="">
                                 </div>
                                 <div class="detail-box">
                                     <h5>
@@ -57,7 +58,7 @@
                         <div class="box">
                             <div>
                                 <div class="img-box">
-                                    <img src="images/f2.png" alt="">
+                                    <img src="@menu.Image" alt="">
                                 </div>
                                 <div class="detail-box">
                                     <h5>
@@ -87,7 +88,7 @@
                         <div class="box">
                             <div>
                                 <div class="img-box">
-                                    <img src="images/f3.png" alt="">
+                                    <img src="@dessert.Image" alt="">
                                 </div>
                                 <div class="detail-box">
                                     <h5>
@@ -99,6 +100,66 @@
                                     <div class="options">
                                         <h6>
                                             @dessert.Price
+                                        </h6>
+                                        <a href="">
+
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @foreach (var sauce in Model.Sauces)
+                {
+
+
+                    <div class="col-sm-6 col-lg-4 all sauce">
+                        <div class="box">
+                            <div>
+                                <div class="img-box">
+                                    <img src="@sauce.Image" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        @sauce.Name
+                                    </h5>
+                                    <p>
+                                        asdsadadasd
+                                    </p>
+                                    <div class="options">
+                                        <h6>
+                                            @sauce.Price
+                                        </h6>
+                                        <a href="">
+
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @foreach (var drink in Model.Drinks)
+                {
+
+
+                    <div class="col-sm-6 col-lg-4 all drink">
+                        <div class="box">
+                            <div>
+                                <div class="img-box">
+                                    <img src="@drink.Image" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h5>
+                                        @drink.Name
+                                    </h5>
+                                    <p>
+                                        asdsadadasd
+                                    </p>
+                                    <div class="options">
+                                        <h6>
+                                            @drink.Price
                                         </h6>
                                         <a href="">
 

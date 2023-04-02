@@ -7,18 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ViewComponents\**" />
+    <Compile Remove="Views\Shared\Components\**" />
+    <Content Remove="ViewComponents\**" />
+    <Content Remove="Views\Shared\Components\**" />
+    <EmbeddedResource Remove="ViewComponents\**" />
+    <EmbeddedResource Remove="Views\Shared\Components\**" />
+    <None Remove="ViewComponents\**" />
+    <None Remove="Views\Shared\Components\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BurgerMVC.Business\BurgerMVC.BusinessLayer.csproj" />
     <ProjectReference Include="..\BurgerMVC.Data\BurgerMVC.DataLayer.csproj" />
     <ProjectReference Include="..\BurgerMVC.EntityLayer\BurgerMVC.EntityLayer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewComponents\" />
-    <Folder Include="Views\Shared\Components\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.15" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.15" />
