@@ -11,7 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BurgerDbContext>();
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<BurgerDbContext>();
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 var app = builder.Build();

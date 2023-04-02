@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BurgerMVC.DataLayer.Migrations
 {
     [DbContext(typeof(BurgerDbContext))]
-    [Migration("20230401122645_add_imageProp")]
-    partial class add_imageProp
+    [Migration("20230401162807_First")]
+    partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -126,7 +126,6 @@ namespace BurgerMVC.DataLayer.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -162,7 +161,6 @@ namespace BurgerMVC.DataLayer.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -201,11 +199,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Drinks")
-                        .HasColumnType("int");
-
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -214,9 +208,6 @@ namespace BurgerMVC.DataLayer.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -314,7 +305,6 @@ namespace BurgerMVC.DataLayer.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

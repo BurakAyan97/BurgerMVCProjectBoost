@@ -27,7 +27,7 @@ namespace BurgerMVC.DataLayer.Concrete
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-S2C7UGO;Database=BurgerMVCProjectDB;User ID=sa;Password=arkadas1");
+            optionsBuilder.UseSqlServer("Server=.;Database=BurgerDb2;Trusted_Connection=True;TrustServerCertificate=True");
             base.OnConfiguring(optionsBuilder);
         }
         public DbSet<Dessert> Desserts { get; set; }

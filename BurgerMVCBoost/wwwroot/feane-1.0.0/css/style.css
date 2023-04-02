@@ -213,6 +213,14 @@ a:focus {
   color: #ffbe33;
 }
 
+    .user_option .cart_link {
+        color: #ffffff;
+    }
+
+        .user_option .cart_link:hover {
+            color: #ffbe33;
+        }
+
 .user_option .cart_link {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BurgerMVC.DataLayer.Migrations
 {
-    public partial class Init : Migration
+    public partial class First : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,6 +65,7 @@ namespace BurgerMVC.DataLayer.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Stock = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -83,6 +84,7 @@ namespace BurgerMVC.DataLayer.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Stock = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -98,12 +100,11 @@ namespace BurgerMVC.DataLayer.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Size = table.Column<int>(type: "int", nullable: false),
-                    Drinks = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Stock = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -122,6 +123,7 @@ namespace BurgerMVC.DataLayer.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Stock = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false)
                 },
