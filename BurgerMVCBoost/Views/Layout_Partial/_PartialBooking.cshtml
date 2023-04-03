@@ -1,52 +1,40 @@
-﻿<section class="book_section layout_padding">
+﻿@model BurgerMVCBoost.ViewModel.BookingVM
+<section class="book_section layout_padding">
     <div class="container">
         <div class="heading_container">
             <h2>
-                Randevu Oluştur
+                Rezervasyon Oluştur
             </h2>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form_container">
-                    <form action="">
-                        <div>
-                            <input type="text" class="form-control" placeholder="Adınız" />
+                    <form asp-action="Book">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <input asp-for="Name" class="form-control" placeholder="Adınız"/>
+                            <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
-                        <div>
-                            <input type="text" class="form-control" placeholder="Telefon Numaranız" />
+                        <div class="form-group">
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="Telefon Numaranız"/>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                         </div>
-                        <div>
-                            <input type="email" class="form-control" placeholder="Mailiniz" />
+                        <div class="form-group">
+                            <input asp-for="Mail" class="form-control" placeholder="Mailiniz" />
+                            <span asp-validation-for="Mail" class="text-danger"></span>
                         </div>
-                        <div>
-                            <select class="form-control nice-select wide">
-                                <option value="" disabled selected>
-                                    Gelecek Kişi Sayısı
-                                </option>
-                                <option value="">
-                                    1
-                                </option>
-                                <option value="">
-                                    2
-                                </option>
-                                <option value="">
-                                    3
-                                </option>
-                                <option value="">
-                                    4
-                                </option>
-                                <option value="">
-                                    5
-                                </option>
-                            </select>
+                        <div class="form-group">
+                            <label asp-for="PersonCount" class="control-label">Kişi Sayısı</label>
+                            <input asp-for="PersonCount" class="form-control" placeholder="Kişi Sayısı"/>
+                            <span asp-validation-for="PersonCount" class="text-danger"></span>
+                        </div>   
+                        <div class="form-group">
+                            <label asp-for="BookDate" class="control-label">Rezervasyon Tarihi</label>
+                            <input asp-for="BookDate" class="form-control" />
+                            <span asp-validation-for="BookDate" class="text-danger"></span>
                         </div>
-                        <div>
-                            <input type="date" class="form-control">
-                        </div>
-                        <div class="btn_box">
-                            <button>
-                                Oluştur
-                            </button>
+                        <div class="btn-box">
+                            <button type="submit">Oluştur</button>
                         </div>
                     </form>
                 </div>
