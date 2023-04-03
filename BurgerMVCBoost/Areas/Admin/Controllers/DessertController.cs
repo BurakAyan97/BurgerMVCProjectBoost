@@ -29,6 +29,9 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult DessertAdd(Dessert dessert)
         {
+            if (dessert.UpdatedTime is null)
+                dessert.UpdatedTime = dessert.CreatedTime;
+            
             dessertManager.TAdd(dessert);
             return RedirectToAction("Index");
         }
