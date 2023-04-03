@@ -9,11 +9,10 @@ namespace BurgerMVC.EntityLayer.Concrete
 {
     public class AppUser : IdentityUser
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Comment { get; set; }
-        public string Password { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
+        public string? Comment { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime ModifiedDate { get; set; }
 
         //Navigation Props

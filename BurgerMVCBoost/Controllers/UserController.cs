@@ -11,12 +11,14 @@ namespace BurgerMVCBoost.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IPasswordHasher<AppUser> _passwordHasher;
         private readonly IMapper _mapper;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public UserController(UserManager<AppUser> userManager, IPasswordHasher<AppUser> passwordHasher, IMapper mapper)
+        public UserController(UserManager<AppUser> userManager, IPasswordHasher<AppUser> passwordHasher, IMapper mapper, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _passwordHasher = passwordHasher;
             _mapper = mapper;
+            _signInManager = signInManager;
         }
 
         [HttpGet]
@@ -32,20 +34,68 @@ namespace BurgerMVCBoost.Controllers
             {
                 AppUser appUser = new AppUser();
                 _mapper.Map(user, appUser);
-                var result = await _userManager.CreateAsync(appUser);
-                if (result.Succeeded)
+
+                if (user.Password != null)
                 {
-                    return RedirectToAction("Login");
+                    var result = await _userManager.CreateAsync(appUser, user.Password);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Login");
+                    }
+                    else
+                    {
+                        foreach (var item in result.Errors)
+                        {
+                            ModelState.AddModelError("", item.Description);
+                        }
+                    }
                 }
                 else
                 {
-                    foreach (var item in result.Errors)
+                    ModelState.AddModelError("", "İşaretli yerler doldurulmak zorundadır.");
+                }
+
+            }
+            return View(user);
+        }
+
+        [HttpGet]
+        public IActionResult Login(string returnUrl)
+        {
+            returnUrl = returnUrl is null ? "Home/Index" : returnUrl;
+            return View(new UserVM() { ReturnUrl = returnUrl });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(UserVM user)
+        {
+            if (!ModelState.IsValid)
+            {
+                AppUser appUser = await _userManager.FindByNameAsync(user.UserName);
+
+                if (appUser != null)
+                {
+                    await _signInManager.SignOutAsync();
+
+                    Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(appUser, user.Password, false, false);
+
+                    if (result.Succeeded)
                     {
-                        ModelState.AddModelError("", item.Description);
+                        return RedirectToAction("Index", "Home");
                     }
                 }
+                else
+                {
+                    ModelState.AddModelError("", "Yanlış Kullanıcı Adı/Şifre.");
+                }
             }
-            return View();
+            return View(user);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login");
         }
     }
 }
