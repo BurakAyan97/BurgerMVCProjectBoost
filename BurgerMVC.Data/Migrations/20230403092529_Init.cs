@@ -13,7 +13,7 @@ namespace BurgerMVC.DataLayer.Migrations
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -27,12 +27,10 @@ namespace BurgerMVC.DataLayer.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -155,7 +153,7 @@ namespace BurgerMVC.DataLayer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -176,7 +174,7 @@ namespace BurgerMVC.DataLayer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -198,7 +196,7 @@ namespace BurgerMVC.DataLayer.Migrations
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -215,8 +213,8 @@ namespace BurgerMVC.DataLayer.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -239,7 +237,7 @@ namespace BurgerMVC.DataLayer.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -265,14 +263,15 @@ namespace BurgerMVC.DataLayer.Migrations
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    AppUserID = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    AppUserID = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Order", x => x.OrderID);
                     table.ForeignKey(
-                        name: "FK_Order_AspNetUsers_AppUserID",
-                        column: x => x.AppUserID,
+                        name: "FK_Order_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -334,11 +333,11 @@ namespace BurgerMVC.DataLayer.Migrations
                 columns: new[] { "ID", "CreatedTime", "Image", "Name", "Price", "Status", "Stock", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1122), "/ProjeResimler/Cikolata.png", "Çikolata Cookie", 10m, true, 50, null },
-                    { 2, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1124), "/ProjeResimler/Dondurma.png", "Dondurma", 10m, true, 10, null },
-                    { 3, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1126), "/ProjeResimler/Elmali.png", "Elmalı Turta", 25m, true, 70, null },
-                    { 4, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1127), "/ProjeResimler/sufle.png", "Sufle", 30m, true, 45, null },
-                    { 5, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1129), "/ProjeResimler/sundae.png", "Sundae", 17m, true, 100, null }
+                    { 1, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9476), "/ProjeResimler/Cikolata.png", "Çikolata Cookie", 10m, true, 50, null },
+                    { 2, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9477), "/ProjeResimler/Dondurma.png", "Dondurma", 10m, true, 10, null },
+                    { 3, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9479), "/ProjeResimler/Elmali.png", "Elmalı Turta", 25m, true, 70, null },
+                    { 4, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9481), "/ProjeResimler/sufle.png", "Sufle", 30m, true, 45, null },
+                    { 5, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9483), "/ProjeResimler/sundae.png", "Sundae", 17m, true, 100, null }
                 });
 
             migrationBuilder.InsertData(
@@ -346,12 +345,12 @@ namespace BurgerMVC.DataLayer.Migrations
                 columns: new[] { "ID", "CreatedTime", "Image", "Name", "Price", "Status", "Stock", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1141), "/ProjeResimler/Ayran.png", "Ayran", 12m, true, 250, null },
-                    { 2, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1143), "/ProjeResimler/Cola.png", "Kola", 16m, true, 450, null },
-                    { 3, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1145), "/ProjeResimler/Fanta.png", "Fanta", 16m, true, 350, null },
-                    { 4, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1147), "/ProjeResimler/Icetea.png", "Ice Tea", 14m, true, 270, null },
-                    { 5, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1149), "/ProjeResimler/MeyveSuyu.png", "Meyve Suyu", 10m, true, 400, null },
-                    { 6, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1151), "/ProjeResimler/Sprite.png", "Sprite", 14m, true, 130, null }
+                    { 1, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9495), "/ProjeResimler/Ayran.png", "Ayran", 12m, true, 250, null },
+                    { 2, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9497), "/ProjeResimler/Cola.png", "Kola", 16m, true, 450, null },
+                    { 3, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9499), "/ProjeResimler/Fanta.png", "Fanta", 16m, true, 350, null },
+                    { 4, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9522), "/ProjeResimler/Icetea.png", "Ice Tea", 14m, true, 270, null },
+                    { 5, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9524), "/ProjeResimler/MeyveSuyu.png", "Meyve Suyu", 10m, true, 400, null },
+                    { 6, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9526), "/ProjeResimler/Sprite.png", "Sprite", 14m, true, 130, null }
                 });
 
             migrationBuilder.InsertData(
@@ -359,11 +358,11 @@ namespace BurgerMVC.DataLayer.Migrations
                 columns: new[] { "ID", "CreatedTime", "Image", "Name", "Price", "Status", "Stock", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1098), "/ProjeResimler/Patates.jpg", "Patates Kızartması", 12m, true, 350, null },
-                    { 2, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1100), "/ProjeResimler/Tender.png", "Tavuk Tender", 20m, true, 350, null },
-                    { 3, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1102), "/ProjeResimler/sogan.jpg", "Soğan Halkası", 17m, true, 350, null },
-                    { 4, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1103), "/ProjeResimler/Nugget.png", "Nugget", 16m, true, 350, null },
-                    { 5, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1105), "/ProjeResimler/Citir.png", "Çıtır Tavuk", 22m, true, 350, null }
+                    { 1, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9453), "/ProjeResimler/Patates.jpg", "Patates Kızartması", 12m, true, 350, null },
+                    { 2, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9455), "/ProjeResimler/Tender.png", "Tavuk Tender", 20m, true, 350, null },
+                    { 3, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9457), "/ProjeResimler/sogan.jpg", "Soğan Halkası", 17m, true, 350, null },
+                    { 4, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9458), "/ProjeResimler/Nugget.png", "Nugget", 16m, true, 350, null },
+                    { 5, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9460), "/ProjeResimler/Citir.png", "Çıtır Tavuk", 22m, true, 350, null }
                 });
 
             migrationBuilder.InsertData(
@@ -371,10 +370,10 @@ namespace BurgerMVC.DataLayer.Migrations
                 columns: new[] { "ID", "CreatedTime", "Description", "Image", "Name", "Price", "Status", "Stock", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(967), "Burger(Balık+Domates+Peynir+Turşu)+Patates(200 gr)+İçecek(Kola)", "/ProjeResimler/BalikBurger.jpg", "Balık Burger Menu", 100m, true, 250, null },
-                    { 2, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(969), "Burger(2 Köfte+Marul+Peynir+Mayonez)+Patates(200gr)+İçecek(Ice Tea)", "/ProjeResimler/DoubleBurger.jpg", "Double Burger Menu", 95m, true, 250, null },
-                    { 3, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(971), "Burger(Tavuk+Marul+Domates+Çıtır Soğan)+Patates(200gr)+İçecek(Ayran)", "/ProjeResimler/TavukBurger.jpg", "Tavuk Burger Menu", 55m, true, 250, null },
-                    { 4, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(973), "Burger(Siyah Ekmek+240gr Köfte+Turşu+Karamelize Soğan)+Patates(200gr)+İçecek(Fanta)", "/ProjeResimler/BlackBurger.jpg", "Black Burger Menu", 120m, true, 250, null }
+                    { 1, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9317), "Burger(Balık+Domates+Peynir+Turşu)+Patates(200 gr)+İçecek(Kola)", "/ProjeResimler/BalikBurger.jpg", "Balık Burger Menu", 100m, true, 250, null },
+                    { 2, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9319), "Burger(2 Köfte+Marul+Peynir+Mayonez)+Patates(200gr)+İçecek(Ice Tea)", "/ProjeResimler/DoubleBurger.jpg", "Double Burger Menu", 95m, true, 250, null },
+                    { 3, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9321), "Burger(Tavuk+Marul+Domates+Çıtır Soğan)+Patates(200gr)+İçecek(Ayran)", "/ProjeResimler/TavukBurger.jpg", "Tavuk Burger Menu", 55m, true, 250, null },
+                    { 4, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9323), "Burger(Siyah Ekmek+240gr Köfte+Turşu+Karamelize Soğan)+Patates(200gr)+İçecek(Fanta)", "/ProjeResimler/BlackBurger.jpg", "Black Burger Menu", 120m, true, 250, null }
                 });
 
             migrationBuilder.InsertData(
@@ -382,14 +381,14 @@ namespace BurgerMVC.DataLayer.Migrations
                 columns: new[] { "ID", "CreatedTime", "Image", "Name", "Price", "Status", "Stock", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1070), "/ProjeResimler/Ketcap.png", "Ketçap", 3m, true, 250, null },
-                    { 2, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1072), "/ProjeResimler/Acisos.png", "Acı Sos", 3m, true, 350, null },
-                    { 3, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1074), "/ProjeResimler/Barbakü.png", "Barbekü Sosu", 3m, true, 350, null },
-                    { 4, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1075), "/ProjeResimler/Buffalo.png", "Buffalo Sosu", 3m, true, 400, null },
-                    { 5, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1077), "/ProjeResimler/Hardal.png", "Hardal Sosu", 3m, true, 150, null },
-                    { 6, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1079), "/ProjeResimler/Ranch.png", "Ranch Sosu", 3m, true, 650, null },
-                    { 7, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1081), "/ProjeResimler/Mayonez.png", "Mayonez", 3m, true, 220, null },
-                    { 8, new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1082), "/ProjeResimler/Sarımsaklı.png", "Sarımsaklı Mayonez", 3m, true, 345, null }
+                    { 1, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9427), "/ProjeResimler/Ketcap.png", "Ketçap", 3m, true, 250, null },
+                    { 2, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9429), "/ProjeResimler/Acisos.png", "Acı Sos", 3m, true, 350, null },
+                    { 3, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9430), "/ProjeResimler/Barbakü.png", "Barbekü Sosu", 3m, true, 350, null },
+                    { 4, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9432), "/ProjeResimler/Buffalo.png", "Buffalo Sosu", 3m, true, 400, null },
+                    { 5, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9434), "/ProjeResimler/Hardal.png", "Hardal Sosu", 3m, true, 150, null },
+                    { 6, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9436), "/ProjeResimler/Ranch.png", "Ranch Sosu", 3m, true, 650, null },
+                    { 7, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9437), "/ProjeResimler/Mayonez.png", "Mayonez", 3m, true, 220, null },
+                    { 8, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9439), "/ProjeResimler/Sarımsaklı.png", "Sarımsaklı Mayonez", 3m, true, 345, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -432,9 +431,9 @@ namespace BurgerMVC.DataLayer.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_AppUserID",
+                name: "IX_Order_UserId",
                 table: "Order",
-                column: "AppUserID");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_DessertID",

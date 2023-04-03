@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BurgerMVC.EntityLayer.Concrete
 {
-    public class AppUser : IdentityUser<string>
+    public class AppUser : IdentityUser<Guid>
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Comment { get; set; }
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
+        public string? Comment { get; set; }
        
 
         //Navigation Props

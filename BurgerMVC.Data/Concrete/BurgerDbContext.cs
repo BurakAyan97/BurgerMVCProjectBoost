@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BurgerMVC.DataLayer.Concrete
 {
-    public class BurgerDbContext : IdentityDbContext<AppUser,AppRole,string>
+    public class BurgerDbContext : IdentityDbContext<AppUser,AppRole,Guid>
     {
         public BurgerDbContext(DbContextOptions<BurgerDbContext> options) : base(options)
         {

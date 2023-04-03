@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BurgerMVC.EntityLayer.Concrete;
+using BurgerMVC.ViewModel;
 using BurgerMVCBoost.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -28,14 +29,14 @@ namespace BurgerMVCBoost.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(UserVM user)
+        public async Task<IActionResult> Register(RegisterVM register)
         {
-            AppUser appUser = new AppUser();
-            _mapper.Map(user, appUser);
-
             if (ModelState.IsValid)
             {
-                IdentityResult result = await _userManager.CreateAsync(appUser, user.Password);
+                AppUser appUser = new AppUser();
+                _mapper.Map(register, appUser);
+
+                IdentityResult result = await _userManager.CreateAsync(appUser, register.Password);
 
                 if (result.Succeeded)
                 {
@@ -49,18 +50,18 @@ namespace BurgerMVCBoost.Controllers
                     }
                 }
             }
-            return View(user);
+            return View(register);
         }
 
         [HttpGet]
         public IActionResult Login(string returnUrl)
         {
             returnUrl = returnUrl is null ? "Home/Index" : returnUrl;
-            return View(new UserVM() { ReturnUrl = returnUrl });
+            return View(new LoginVM() { ReturnUrl = returnUrl });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(UserVM user)
+        public async Task<IActionResult> Login(LoginVM user)
         {
             if (ModelState.IsValid)
             {

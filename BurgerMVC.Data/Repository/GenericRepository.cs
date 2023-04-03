@@ -19,9 +19,11 @@ namespace BurgerMVC.DataLayer.Repository
             c.SaveChanges();
         }
 
-        public T Get(Expression<Func<T, bool>> filter)
+        public T GetByID(int id)
         {
-            throw new NotImplementedException();
+            using var c = new BurgerDbContext();
+            return c.Set<T>().Find(id);
+
         }
 
         public List<T> GetList()

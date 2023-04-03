@@ -30,9 +30,9 @@ namespace BurgerMVC.BusinessLayer.Concrete
             _sauceDal.Delete(t);
         }
 
-        public Sauce TGet(Expression<Func<Sauce, bool>> filter)
+        public Sauce TGetByID(int id)
         {
-            return _sauceDal.Get(filter);
+            return _sauceDal.GetByID(id);
         }
 
         public List<Sauce> TGetList()

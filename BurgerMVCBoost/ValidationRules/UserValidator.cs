@@ -1,4 +1,4 @@
-﻿using BurgerMVCBoost.ViewModel;
+﻿using BurgerMVC.ViewModel;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BurgerMVC.BusinessLayer.ValidationRules
 {
-    public class UserValidator : AbstractValidator<UserVM>
+    public class UserValidator : AbstractValidator<RegisterVM>
     {
         public UserValidator()
         {

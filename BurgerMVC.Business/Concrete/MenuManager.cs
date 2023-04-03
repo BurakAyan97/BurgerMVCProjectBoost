@@ -30,11 +30,11 @@ namespace BurgerMVC.BusinessLayer.Concrete
             _menuDal.Delete(t);
         }
 
-        public Menu TGet(Expression<Func<Menu, bool>> filter)
+        public Menu TGetByID(int id)
         {
-            return _menuDal.Get(filter);
+            return _menuDal.GetByID(id);
         }
-               
+
         public List<Menu> TGetList()
         {
             return _menuDal.GetList();
@@ -48,6 +48,11 @@ namespace BurgerMVC.BusinessLayer.Concrete
         public void TUpdate(Menu t)
         {
             _menuDal.Update(t);
+        }
+
+        public void StatusFalse(Menu t)
+        {
+            t.Status = false;
         }
     }
 }

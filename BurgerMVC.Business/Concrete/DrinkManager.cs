@@ -1,5 +1,6 @@
 ﻿using BurgerMVC.BusinessLayer.Abstract;
 using BurgerMVC.DataLayer.Abstract;
+using BurgerMVC.DataLayer.EntityFramework;
 using BurgerMVC.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -29,9 +30,9 @@ namespace BurgerMVC.BusinessLayer.Concrete
             throw new NotImplementedException();
         }
 
-        public Drink TGet(Expression<Func<Drink, bool>> filter)
+        public Drink TGetByID(int id)
         {
-            throw new NotImplementedException();
+            return _drinkDal.GetByID(id);
         }
 
         public List<Drink> TGetList()

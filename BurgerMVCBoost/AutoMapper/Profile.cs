@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BurgerMVC.EntityLayer.Concrete;
+using BurgerMVC.ViewModel;
 using BurgerMVCBoost.ViewModel;
 
 namespace BurgerMVCBoost.AutoMapper
@@ -8,7 +9,9 @@ namespace BurgerMVCBoost.AutoMapper
     {
         public MapperProfile()
         {
-            CreateMap<AppUser, UserVM>().ReverseMap();
+            CreateMap<AppUser, RegisterVM>().ReverseMap();
+            CreateMap<AppUser, LoginVM>().ReverseMap();
+
         }
     }
 }

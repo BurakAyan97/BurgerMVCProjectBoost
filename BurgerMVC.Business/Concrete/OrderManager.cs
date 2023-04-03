@@ -1,5 +1,6 @@
 ﻿using BurgerMVC.BusinessLayer.Abstract;
 using BurgerMVC.DataLayer.Abstract;
+using BurgerMVC.DataLayer.EntityFramework;
 using BurgerMVC.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -29,9 +30,9 @@ namespace BurgerMVC.BusinessLayer.Concrete
             _orderDal.Delete(t);
         }
 
-        public Order TGet(Expression<Func<Order, bool>> filter)
+        public Order TGetByID(int id)
         {
-            return _orderDal.Get(filter);
+            return _orderDal.GetByID(id);
         }
 
         public List<Order> TGetList()

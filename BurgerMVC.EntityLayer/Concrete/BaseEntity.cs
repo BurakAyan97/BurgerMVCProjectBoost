@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BurgerMVC.EntityLayer.Concrete
 {
-    public  class BaseEntity
+    public class BaseEntity
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -15,6 +15,6 @@ namespace BurgerMVC.EntityLayer.Concrete
         public DateTime? UpdatedTime { get; set; }
         public string? Image { get; set; }
         public int Stock { get; set; }
-        public bool Status { get; set; }
+        public bool Status { get; set; } = true;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BurgerMVC.BusinessLayer.Abstract;
 using BurgerMVC.DataLayer.Abstract;
+using BurgerMVC.DataLayer.EntityFramework;
 using BurgerMVC.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -29,9 +30,9 @@ namespace BurgerMVC.BusinessLayer.Concrete
             _extraDal.Delete(t);
         }
 
-        public Extra TGet(Expression<Func<Extra, bool>> filter)
+        public Extra TGetByID(int id)
         {
-            return _extraDal.Get(filter);
+            return _extraDal.GetByID(id);
         }
 
         public List<Extra> TGetList()
@@ -49,4 +50,6 @@ namespace BurgerMVC.BusinessLayer.Concrete
             _extraDal.Update(t);
         }
     }
+
 }
+

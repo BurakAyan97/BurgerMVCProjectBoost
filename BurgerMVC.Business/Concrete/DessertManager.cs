@@ -29,9 +29,9 @@ namespace BurgerMVC.BusinessLayer.Concrete
             _dessertDal.Delete(t);
         }
 
-        public Dessert TGet(Expression<Func<Dessert, bool>> filter)
+        public Dessert TGetByID(int id)
         {
-            return _dessertDal.Get(filter);
+            return _dessertDal.GetByID(id);
         }
                 
         public List<Dessert> TGetList()

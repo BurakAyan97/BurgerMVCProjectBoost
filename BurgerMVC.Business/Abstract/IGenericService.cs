@@ -12,7 +12,7 @@ namespace BurgerMVC.BusinessLayer.Abstract
         void TAdd(T t);
         void TUpdate(T t);
         void TDelete(T t);
-        T TGet(Expression<Func<T, bool>> filter);
+        T TGetByID(int id);
         List<T> TGetList();
         List<T> TGetListByFilter(Expression<Func<T, bool>> filter);
 
