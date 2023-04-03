@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace BurgerMVC.EntityLayer.Concrete
 {
-    public class AppUser : IdentityUser
+    public class AppUser : IdentityUser<string>
     {
-        public string? Name { get; set; }
-        public string? Surname { get; set; }
-        public string? Comment { get; set; }
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public DateTime ModifiedDate { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Comment { get; set; }
+       
 
         //Navigation Props
         public virtual ICollection<Order> Orders { get; set; }

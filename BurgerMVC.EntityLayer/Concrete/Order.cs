@@ -22,7 +22,7 @@ namespace BurgerMVC.EntityLayer.Concrete
             OrderDetails = new HashSet<OrderDetails>();
         }
 
-        public string UserID { get; set; }
+        public string AppUserID { get; set; }
         public virtual AppUser User { get; set; }
 
     }

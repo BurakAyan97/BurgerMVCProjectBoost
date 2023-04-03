@@ -30,31 +30,24 @@ namespace BurgerMVCBoost.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(UserVM user)
         {
+            AppUser appUser = new AppUser();
+            _mapper.Map(user, appUser);
+
             if (ModelState.IsValid)
             {
-                AppUser appUser = new AppUser();
-                _mapper.Map(user, appUser);
+                IdentityResult result = await _userManager.CreateAsync(appUser, user.Password);
 
-                if (user.Password != null)
+                if (result.Succeeded)
                 {
-                    var result = await _userManager.CreateAsync(appUser, user.Password);
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Login");
-                    }
-                    else
-                    {
-                        foreach (var item in result.Errors)
-                        {
-                            ModelState.AddModelError("", item.Description);
-                        }
-                    }
+                    return RedirectToAction("Login");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "İşaretli yerler doldurulmak zorundadır.");
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError("", item.Description);
+                    }
                 }
-
             }
             return View(user);
         }
@@ -69,7 +62,7 @@ namespace BurgerMVCBoost.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(UserVM user)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 AppUser appUser = await _userManager.FindByNameAsync(user.UserName);
 

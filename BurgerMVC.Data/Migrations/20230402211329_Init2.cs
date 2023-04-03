@@ -5,414 +5,458 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BurgerMVC.DataLayer.Migrations
 {
-    public partial class mig_pw : Migration
+    public partial class Init2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Password",
-                table: "AspNetUsers");
+            migrationBuilder.AlterColumn<string>(
+                name: "Surname",
+                table: "AspNetUsers",
+                type: "nvarchar(max)",
+                nullable: false,
+                defaultValue: "",
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "Name",
+                table: "AspNetUsers",
+                type: "nvarchar(max)",
+                nullable: false,
+                defaultValue: "",
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "Comment",
+                table: "AspNetUsers",
+                type: "nvarchar(max)",
+                nullable: false,
+                defaultValue: "",
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true);
 
             migrationBuilder.UpdateData(
                 table: "Dessert",
                 keyColumn: "ID",
                 keyValue: 1,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7702));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1175));
 
             migrationBuilder.UpdateData(
                 table: "Dessert",
                 keyColumn: "ID",
                 keyValue: 2,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7704));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1177));
 
             migrationBuilder.UpdateData(
                 table: "Dessert",
                 keyColumn: "ID",
                 keyValue: 3,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7706));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1178));
 
             migrationBuilder.UpdateData(
                 table: "Dessert",
                 keyColumn: "ID",
                 keyValue: 4,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7708));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1180));
 
             migrationBuilder.UpdateData(
                 table: "Dessert",
                 keyColumn: "ID",
                 keyValue: 5,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7710));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1182));
 
             migrationBuilder.UpdateData(
                 table: "Drinks",
                 keyColumn: "ID",
                 keyValue: 1,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7724));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1195));
 
             migrationBuilder.UpdateData(
                 table: "Drinks",
                 keyColumn: "ID",
                 keyValue: 2,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7726));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1197));
 
             migrationBuilder.UpdateData(
                 table: "Drinks",
                 keyColumn: "ID",
                 keyValue: 3,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7728));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1199));
 
             migrationBuilder.UpdateData(
                 table: "Drinks",
                 keyColumn: "ID",
                 keyValue: 4,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7730));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1200));
 
             migrationBuilder.UpdateData(
                 table: "Drinks",
                 keyColumn: "ID",
                 keyValue: 5,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7731));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1227));
 
             migrationBuilder.UpdateData(
                 table: "Drinks",
                 keyColumn: "ID",
                 keyValue: 6,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7774));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1229));
 
             migrationBuilder.UpdateData(
                 table: "Extras",
                 keyColumn: "ID",
                 keyValue: 1,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7680));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1153));
 
             migrationBuilder.UpdateData(
                 table: "Extras",
                 keyColumn: "ID",
                 keyValue: 2,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7682));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1155));
 
             migrationBuilder.UpdateData(
                 table: "Extras",
                 keyColumn: "ID",
                 keyValue: 3,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7684));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1157));
 
             migrationBuilder.UpdateData(
                 table: "Extras",
                 keyColumn: "ID",
                 keyValue: 4,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7685));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1158));
 
             migrationBuilder.UpdateData(
                 table: "Extras",
                 keyColumn: "ID",
                 keyValue: 5,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7687));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1160));
 
             migrationBuilder.UpdateData(
                 table: "Menus",
                 keyColumn: "ID",
                 keyValue: 1,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7551));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1030));
 
             migrationBuilder.UpdateData(
                 table: "Menus",
                 keyColumn: "ID",
                 keyValue: 2,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7554));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1032));
 
             migrationBuilder.UpdateData(
                 table: "Menus",
                 keyColumn: "ID",
                 keyValue: 3,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7555));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1034));
 
             migrationBuilder.UpdateData(
                 table: "Menus",
                 keyColumn: "ID",
                 keyValue: 4,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7557));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1036));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 1,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7652));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1124));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 2,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7654));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1126));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 3,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7656));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1128));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 4,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7657));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1129));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 5,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7659));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1131));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 6,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7661));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1133));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 7,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7663));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1135));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 8,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 17, 21, 43, 933, DateTimeKind.Local).AddTicks(7665));
+                value: new DateTime(2023, 4, 3, 0, 13, 28, 738, DateTimeKind.Local).AddTicks(1137));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "Password",
+            migrationBuilder.AlterColumn<string>(
+                name: "Surname",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
-                nullable: true);
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "Name",
+                table: "AspNetUsers",
+                type: "nvarchar(max)",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "Comment",
+                table: "AspNetUsers",
+                type: "nvarchar(max)",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)");
 
             migrationBuilder.UpdateData(
                 table: "Dessert",
                 keyColumn: "ID",
                 keyValue: 1,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6311));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1122));
 
             migrationBuilder.UpdateData(
                 table: "Dessert",
                 keyColumn: "ID",
                 keyValue: 2,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6313));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1124));
 
             migrationBuilder.UpdateData(
                 table: "Dessert",
                 keyColumn: "ID",
                 keyValue: 3,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6315));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1126));
 
             migrationBuilder.UpdateData(
                 table: "Dessert",
                 keyColumn: "ID",
                 keyValue: 4,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6316));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1127));
 
             migrationBuilder.UpdateData(
                 table: "Dessert",
                 keyColumn: "ID",
                 keyValue: 5,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6318));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1129));
 
             migrationBuilder.UpdateData(
                 table: "Drinks",
                 keyColumn: "ID",
                 keyValue: 1,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6331));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1141));
 
             migrationBuilder.UpdateData(
                 table: "Drinks",
                 keyColumn: "ID",
                 keyValue: 2,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6333));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1143));
 
             migrationBuilder.UpdateData(
                 table: "Drinks",
                 keyColumn: "ID",
                 keyValue: 3,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6335));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1145));
 
             migrationBuilder.UpdateData(
                 table: "Drinks",
                 keyColumn: "ID",
                 keyValue: 4,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6337));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1147));
 
             migrationBuilder.UpdateData(
                 table: "Drinks",
                 keyColumn: "ID",
                 keyValue: 5,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6338));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1149));
 
             migrationBuilder.UpdateData(
                 table: "Drinks",
                 keyColumn: "ID",
                 keyValue: 6,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6340));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1151));
 
             migrationBuilder.UpdateData(
                 table: "Extras",
                 keyColumn: "ID",
                 keyValue: 1,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6291));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1098));
 
             migrationBuilder.UpdateData(
                 table: "Extras",
                 keyColumn: "ID",
                 keyValue: 2,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6292));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1100));
 
             migrationBuilder.UpdateData(
                 table: "Extras",
                 keyColumn: "ID",
                 keyValue: 3,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6294));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1102));
 
             migrationBuilder.UpdateData(
                 table: "Extras",
                 keyColumn: "ID",
                 keyValue: 4,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6296));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1103));
 
             migrationBuilder.UpdateData(
                 table: "Extras",
                 keyColumn: "ID",
                 keyValue: 5,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6298));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1105));
 
             migrationBuilder.UpdateData(
                 table: "Menus",
                 keyColumn: "ID",
                 keyValue: 1,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6139));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(967));
 
             migrationBuilder.UpdateData(
                 table: "Menus",
                 keyColumn: "ID",
                 keyValue: 2,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6142));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(969));
 
             migrationBuilder.UpdateData(
                 table: "Menus",
                 keyColumn: "ID",
                 keyValue: 3,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6143));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(971));
 
             migrationBuilder.UpdateData(
                 table: "Menus",
                 keyColumn: "ID",
                 keyValue: 4,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6145));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(973));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 1,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6260));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1070));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 2,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6262));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1072));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 3,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6263));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1074));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 4,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6265));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1075));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 5,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6267));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1077));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 6,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6269));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1079));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 7,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6271));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1081));
 
             migrationBuilder.UpdateData(
                 table: "Sauce",
                 keyColumn: "ID",
                 keyValue: 8,
                 column: "CreatedTime",
-                value: new DateTime(2023, 4, 2, 16, 47, 24, 134, DateTimeKind.Local).AddTicks(6272));
+                value: new DateTime(2023, 4, 2, 23, 58, 19, 723, DateTimeKind.Local).AddTicks(1082));
         }
     }
 }
