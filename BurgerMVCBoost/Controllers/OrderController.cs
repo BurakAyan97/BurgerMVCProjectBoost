@@ -27,9 +27,9 @@ namespace BurgerMVCBoost.Controllers
             };
             return View(vm);
         }
-        public IActionResult Order() 
+        public IActionResult Order(int id) 
         { 
-            return View();
+            return View(id);
         }
     }
 }
