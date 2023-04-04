@@ -29,6 +29,9 @@
                     <div class="col-sm-6 col-lg-4 all menu">
                         <div class="box">
                             <div>
+                                <div>
+                                <input asp-for="Menu.ID" type="hidden"/>
+                                </div>
                                 <div class="img-box">
                                     <img src="@menu.Image" alt="">
                                 </div>
@@ -43,7 +46,7 @@
                                         <h6>
                                             @menu.Price
                                         </h6>
-                                        <button class="btn btn-warning" href="/Order/Order/">
+                                        <button class="btn btn-warning" href="/Order/Order/@menu.ID">
                                             <i>Sipariş Ver</i>
                                         </button>
                                     </div>
