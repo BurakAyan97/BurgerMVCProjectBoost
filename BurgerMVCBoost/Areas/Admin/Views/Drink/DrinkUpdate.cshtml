@@ -1,9 +1,4 @@
-﻿@model BurgerMVCBoost.Areas.Admin.Models.DessertViewModel
-@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_BurgerLayout2.cshtml";
-}
-
+﻿@model BurgerMVC.EntityLayer.Concrete.Drink
 
 <!DOCTYPE html>
 <html lang="en">
@@ -315,93 +310,46 @@
     </script>
 </head>
 <body>
-    <div class="container-xl">
-        <div class="table-responsive">
-            <div class="table-wrapper">
-                <div class="table-title">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h2>Tatlıları <b>Listele</b></h2>
-                        </div>
-                        <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Yeni Tatlı Ekle</span></a>
-                        </div>
-                    </div>
-                </div>
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Tatlı</th>
-                            <th>Fiyat</th>
-                            <th>Stok</th>
-                            <th>Mevcut</th>
-                            <th>Güncelleme Tarihi</th>
-                            <th>Güncelle</th>
-                            <th>Sil</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.Desserts)
-                        {
-                            <tr>
-                                <td>@item.Name</td>
-                                <td>@item.Price₺</td>
-                                <td>@item.Stock</td>
-                                <td>@item.Status</td>
-                                <td>@item.UpdatedTime</td>
-                                <td>
-                                    <button class="fa fa-edit" data-toggle="modal" data-target="@("#editEmployeeModal-"+item.ID)" data-url="@Url.Action($"DessertUpdate/{item.ID}")"></button>
-                                    @await Html.PartialAsync("DessertUpdate", item)
-                                </td>
-                                <td>
-                                    <button class="fa fa-remove" data-toggle="modal" data-target="@("#deleteEmployeeModal-"+item.ID)" data-url="@Url.Action($"DessertDelete/{item.ID}")"></button>
-                                    @await Html.PartialAsync("DessertDelete", item)
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <!-- Add Modal HTML -->
-    <div id="addEmployeeModal" class="modal fade">
+    <!-- Edit Modal HTML -->
+    <div id="editEmployeeModal-@Model.ID" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form asp-action="DessertAdd" asp-controller="Dessert" asp-area="Admin" method="post">
+                <form asp-action="DrinkUpdate" asp-controller="Drink" asp-area="Admin" method="post">
                     <div class="modal-header">
-                        <h4 class="modal-title">Tatlı Ekle</h4>
+                        <h4 class="modal-title">İçecekleri Düzenle</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label asp-for="Dessert.Name">Tatlı Adı</label>
-                            <input asp-for="Dessert.Name" type="text" class="form-control" required>
+                            <input asp-for="ID" type="hidden" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Dessert.Price">Tatlı Fiyatı</label>
-                            <input asp-for="Dessert.Price" type="text" class="form-control" required>
+                            <label asp-for="Name">İçecek Adı</label>
+                            <input asp-for="Name" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Dessert.Stock">Tatlı Stoğu</label>
-                            <input asp-for="Dessert.Stock" type="text" class="form-control" required>
+                            <label asp-for="Price">İçecek Fiyatı</label>
+                            <input asp-for="Price" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Tatlı Fotoğrafı</label>
+                            <label asp-for="Stock">İçecek Stoğu</label>
+                            <input asp-for="Stock" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            @*Bunu Oğuzhan yapcak bişeler anlamadım.*@
+                            <label>İçecek Fotoğrafı</label>
                             <input type="file" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="İptal">
-                        <input type="submit" class="btn btn-success" value="Ekle">
+                        <input type="submit" class="btn btn-info" value="Kaydet">
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <!-- Edit Modal HTML -->
-    <!-- Delete odal HTML -->
+    <!-- Delete Modal HTML -->
 
 </body>
 </html>
-

@@ -91,5 +91,9 @@ namespace BurgerMVCBoost.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login");
         }
+        public async Task<IActionResult> ForgotPassword()
+        {
+            return View();
+        }
     }
 }

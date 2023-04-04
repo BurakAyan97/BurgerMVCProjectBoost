@@ -17,15 +17,15 @@ namespace BurgerMVCBoost.Controllers
         {
             SendMail(bookingVM);
                                    
-
             
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
 
-        private void SendMail(BookingVM bookingVM)
+        private async Task SendMail(BookingVM bookingVM)
         {
             MailMessage mesaj = new MailMessage();
             mesaj.From = new MailAddress("ucsilahsorlerburger@gmail.com");
+            mesaj.To.Add($"{bookingVM.Mail}");
             mesaj.To.Add("ucsilahsorlerburger@gmail.com");
             mesaj.Subject = "Yeni Rezervasyon Oluşturuldu";
             mesaj.Body = $"Rezervasyon Bilgileri\nKişi={bookingVM.Name}\nTel No={bookingVM.PhoneNumber}\nMail={bookingVM.Mail}\nKişi Sayısı={bookingVM.PersonCount}\nRezervasyon Tarihi={bookingVM.BookDate}";
@@ -36,7 +36,8 @@ namespace BurgerMVCBoost.Controllers
             a.Host = "smtp.gmail.com";
             a.EnableSsl = true;
             object userState = mesaj;
-            a.Send(mesaj);
+            //a.Send(mesaj);
+            a.SendAsync(mesaj, userState);
         }
     }
 }

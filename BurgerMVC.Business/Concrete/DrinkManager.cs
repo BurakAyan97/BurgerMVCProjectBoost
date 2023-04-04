@@ -22,12 +22,12 @@ namespace BurgerMVC.BusinessLayer.Concrete
 
         public void TAdd(Drink t)
         {
-            throw new NotImplementedException();
+           _drinkDal.Insert(t);
         }
 
         public void TDelete(Drink t)
         {
-            throw new NotImplementedException();
+            _drinkDal.Delete(t);
         }
 
         public Drink TGetByID(int id)
@@ -42,12 +42,12 @@ namespace BurgerMVC.BusinessLayer.Concrete
 
         public List<Drink> TGetListByFilter(Expression<Func<Drink, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _drinkDal.GetListByFilter(filter);
         }
 
         public void TUpdate(Drink t)
         {
-            throw new NotImplementedException();
+            _drinkDal.Update(t);
         }
     }
 }
