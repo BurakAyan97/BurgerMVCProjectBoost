@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BurgerMVCBoost.Controllers
 {
-    [Authorize(Roles = "Customer")]
+    [Authorize(Roles = "Customer,Admin")]
     public class OrderController : Controller
     {
         MenuManager menuManager = new MenuManager(new EfMenuDal());
@@ -16,6 +16,8 @@ namespace BurgerMVCBoost.Controllers
         DessertManager dessertManager = new DessertManager(new EfDessertDal());
         SauceManager sauceManager = new SauceManager(new EfSauceDal());
         DrinkManager drinkManager = new DrinkManager(new EfDrinkDal());
+        
+        [HttpGet]
         public IActionResult OrderList()
         {
             AllMenuVM vm = new AllMenuVM()
@@ -28,6 +30,7 @@ namespace BurgerMVCBoost.Controllers
             };
             return View(vm);
         }
+        
         public IActionResult Order(int id)
         {
             AllMenuVM vm = new AllMenuVM()

@@ -21,6 +21,11 @@ builder.Services.AddIdentity<AppUser, AppRole>(
     }
     ).AddRoles<AppRole>().AddEntityFrameworkStores<BurgerDbContext>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/User/Login";
+});
+
 builder.Services.AddAuthentication().AddFacebook(x =>
 {
     x.AppId = builder.Configuration["FacebookAppId"];
