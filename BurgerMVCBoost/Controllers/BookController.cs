@@ -21,7 +21,7 @@ namespace BurgerMVCBoost.Controllers
             return RedirectToAction("Index","Home");
         }
 
-        private async Task SendMail(BookingVM bookingVM)
+        private void SendMail(BookingVM bookingVM)
         {
             MailMessage mesaj = new MailMessage();
             mesaj.From = new MailAddress("ucsilahsorlerburger@gmail.com");

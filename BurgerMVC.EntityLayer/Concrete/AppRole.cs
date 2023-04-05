@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BurgerMVC.EntityLayer.Concrete
 {
-    public class AppRole:IdentityRole<Guid>
+    public class AppRole : IdentityRole<Guid>
     {
     }
 }

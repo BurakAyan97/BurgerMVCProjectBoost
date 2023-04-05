@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Admin Adı</th>
+        <th>Admin Maili</th>
+    </tr>
+</table>
+@await Html.PartialAsync("~/Views/Layout_Partial/_PartialScripts.cshtml")

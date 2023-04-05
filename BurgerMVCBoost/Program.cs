@@ -19,8 +19,19 @@ builder.Services.AddIdentity<AppUser, AppRole>(
         opt.Password.RequireLowercase = false;
         opt.Password.RequireNonAlphanumeric = false;
     }
-    ).AddEntityFrameworkStores<BurgerDbContext>();
+    ).AddRoles<AppRole>().AddEntityFrameworkStores<BurgerDbContext>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAuthentication().AddFacebook(x =>
+{
+    x.AppId = builder.Configuration["FacebookAppId"];
+    x.AppSecret = builder.Configuration["FacebookAppSecret"];
+});
+
+builder.Services.AddAuthentication().AddGoogle(x =>
+{
+    x.ClientId = builder.Configuration["web:client_id"];
+    x.ClientSecret = builder.Configuration["web:client_secret"];
+});
 
 var app = builder.Build();
 

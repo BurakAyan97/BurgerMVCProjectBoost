@@ -5,7 +5,7 @@
     <header class="header_section">
         <div class="container">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" asp-action="Index" asp-controller="Home">
                     <span>
                         Üç Silahşörler
                     </span>
@@ -31,10 +31,10 @@
                         </li>
                     </ul>
                     <div class="user_option">
-                        <a href="" class="user_link">
+                        <a asp-action="Register" asp-controller="User" class="user_link">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </a>
-                        <a class="cart_link" href="#">
+                        <a class="cart_link" asp-action="OrderList" asp-controller="Order">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </a>
                         <form class="form-inline">
@@ -42,7 +42,7 @@
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
                         </form>
-                        <a href="/Order/OrderList/" class="order_online">
+                        <a asp-action="OrderList" asp-controller="Order" class="order_online">
                             Sipariş Et
                         </a>
                     </div>

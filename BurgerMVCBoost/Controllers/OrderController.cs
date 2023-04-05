@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BurgerMVCBoost.Controllers
 {
-    //[Authorize]
+    [Authorize(Roles = "Customer")]
     public class OrderController : Controller
     {
         MenuManager menuManager = new MenuManager(new EfMenuDal());
