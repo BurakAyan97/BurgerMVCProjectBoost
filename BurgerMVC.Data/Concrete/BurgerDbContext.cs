@@ -66,13 +66,14 @@ namespace BurgerMVC.DataLayer.Concrete
                 new Drink { ID = 5, Name = "Meyve Suyu", Price = 10, CreatedTime = DateTime.Now, Stock = 400, Status = true, Image = "/ProjeResimler/MeyveSuyu.png" },
                 new Drink { ID = 6, Name = "Sprite", Price = 14, CreatedTime = DateTime.Now, Stock = 130, Status = true, Image = "/ProjeResimler/Sprite.png" }
                 );
+            builder.Entity<AppRole>().HasData(new AppRole {Id=new Guid("1CE9E927-2D41-4770-9816-EDF5129FA0CC") , Name = "Admin" , NormalizedName="ADMIN" }, new AppRole { Id = new Guid("5DF094BA-45BE-4736-A78E-935F949FA388"), Name ="Customer" , NormalizedName="CUSTOMER"});
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer("Server=DESKTOP-S2C7UGO;Database=BurgerMVCProjectDB;User ID=sa;Password=arkadas1");
-            //optionsBuilder.UseSqlServer("Server=DESKTOP-81CS8R3;Database=BurgerMVCProjectDB;User ID=sa;Password=3157261Ho");
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-S2C7UGO;Database=BurgerMVCProjectDB;User ID=sa;Password=arkadas1");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-81CS8R3;Database=BurgerMVCProjectDB;User ID=sa;Password=3157261Ho");
             base.OnConfiguring(optionsBuilder);
         }
         public DbSet<Dessert> Desserts { get; set; }

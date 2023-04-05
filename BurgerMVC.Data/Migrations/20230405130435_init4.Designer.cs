@@ -4,6 +4,7 @@ using BurgerMVC.DataLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BurgerMVC.DataLayer.Migrations
 {
     [DbContext(typeof(BurgerDbContext))]
-    partial class BurgerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230405130435_init4")]
+    partial class init4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,16 +55,14 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             Id = new Guid("1ce9e927-2d41-4770-9816-edf5129fa0cc"),
-                            ConcurrencyStamp = "61cd752d-8458-4234-a1ba-07fa91455e84",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
+                            ConcurrencyStamp = "72567888-45f1-4a8c-a19a-590ab74ac638",
+                            Name = "Admin"
                         },
                         new
                         {
                             Id = new Guid("5df094ba-45be-4736-a78e-935f949fa388"),
-                            ConcurrencyStamp = "2e5c9736-71cc-45e5-b19d-5351129cf9e7",
-                            Name = "Customer",
-                            NormalizedName = "CUSTOMER"
+                            ConcurrencyStamp = "7a0a2c0a-1b78-4a82-828c-87fa2bd4dc8a",
+                            Name = "Customer"
                         });
                 });
 
@@ -179,7 +179,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 1,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2159),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(630),
                             Image = "/ProjeResimler/Cikolata.png",
                             Name = "Çikolata Cookie",
                             Price = 10m,
@@ -189,7 +189,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 2,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2160),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(632),
                             Image = "/ProjeResimler/Dondurma.png",
                             Name = "Dondurma",
                             Price = 10m,
@@ -199,7 +199,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 3,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2162),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(634),
                             Image = "/ProjeResimler/Elmali.png",
                             Name = "Elmalı Turta",
                             Price = 25m,
@@ -209,7 +209,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 4,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2163),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(635),
                             Image = "/ProjeResimler/sufle.png",
                             Name = "Sufle",
                             Price = 30m,
@@ -219,7 +219,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 5,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2164),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(637),
                             Image = "/ProjeResimler/sundae.png",
                             Name = "Sundae",
                             Price = 17m,
@@ -266,7 +266,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 1,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2177),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(651),
                             Image = "/ProjeResimler/Ayran.png",
                             Name = "Ayran",
                             Price = 12m,
@@ -276,7 +276,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 2,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2178),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(699),
                             Image = "/ProjeResimler/Cola.png",
                             Name = "Kola",
                             Price = 16m,
@@ -286,7 +286,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 3,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2180),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(701),
                             Image = "/ProjeResimler/Fanta.png",
                             Name = "Fanta",
                             Price = 16m,
@@ -296,7 +296,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 4,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2181),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(702),
                             Image = "/ProjeResimler/Icetea.png",
                             Name = "Ice Tea",
                             Price = 14m,
@@ -306,7 +306,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 5,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2183),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(703),
                             Image = "/ProjeResimler/MeyveSuyu.png",
                             Name = "Meyve Suyu",
                             Price = 10m,
@@ -316,7 +316,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 6,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2184),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(704),
                             Image = "/ProjeResimler/Sprite.png",
                             Name = "Sprite",
                             Price = 14m,
@@ -363,7 +363,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 1,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2102),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(609),
                             Image = "/ProjeResimler/Patates.jpg",
                             Name = "Patates Kızartması",
                             Price = 12m,
@@ -373,7 +373,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 2,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2104),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(611),
                             Image = "/ProjeResimler/Tender.png",
                             Name = "Tavuk Tender",
                             Price = 20m,
@@ -383,7 +383,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 3,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2142),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(612),
                             Image = "/ProjeResimler/sogan.jpg",
                             Name = "Soğan Halkası",
                             Price = 17m,
@@ -393,7 +393,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 4,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2144),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(614),
                             Image = "/ProjeResimler/Nugget.png",
                             Name = "Nugget",
                             Price = 16m,
@@ -403,7 +403,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 5,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2146),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(615),
                             Image = "/ProjeResimler/Citir.png",
                             Name = "Çıtır Tavuk",
                             Price = 22m,
@@ -454,7 +454,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 1,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(1969),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(480),
                             Description = "Burger(Balık+Domates+Peynir+Turşu)+Patates(200 gr)+İçecek(Kola)",
                             Image = "/ProjeResimler/BalikBurger.jpg",
                             Name = "Balık Burger Menu",
@@ -465,7 +465,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 2,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(1971),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(483),
                             Description = "Burger(2 Köfte+Marul+Peynir+Mayonez)+Patates(200gr)+İçecek(Ice Tea)",
                             Image = "/ProjeResimler/DoubleBurger.jpg",
                             Name = "Double Burger Menu",
@@ -476,7 +476,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 3,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(1973),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(485),
                             Description = "Burger(Tavuk+Marul+Domates+Çıtır Soğan)+Patates(200gr)+İçecek(Ayran)",
                             Image = "/ProjeResimler/TavukBurger.jpg",
                             Name = "Tavuk Burger Menu",
@@ -487,7 +487,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 4,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(1974),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(486),
                             Description = "Burger(Siyah Ekmek+240gr Köfte+Turşu+Karamelize Soğan)+Patates(200gr)+İçecek(Fanta)",
                             Image = "/ProjeResimler/BlackBurger.jpg",
                             Name = "Black Burger Menu",
@@ -613,7 +613,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 1,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2077),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(583),
                             Image = "/ProjeResimler/Ketcap.png",
                             Name = "Ketçap",
                             Price = 3m,
@@ -623,7 +623,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 2,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2079),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(585),
                             Image = "/ProjeResimler/Acisos.png",
                             Name = "Acı Sos",
                             Price = 3m,
@@ -633,7 +633,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 3,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2080),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(586),
                             Image = "/ProjeResimler/Barbakü.png",
                             Name = "Barbekü Sosu",
                             Price = 3m,
@@ -643,7 +643,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 4,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2082),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(587),
                             Image = "/ProjeResimler/Buffalo.png",
                             Name = "Buffalo Sosu",
                             Price = 3m,
@@ -653,7 +653,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 5,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2083),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(588),
                             Image = "/ProjeResimler/Hardal.png",
                             Name = "Hardal Sosu",
                             Price = 3m,
@@ -663,7 +663,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 6,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2084),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(590),
                             Image = "/ProjeResimler/Ranch.png",
                             Name = "Ranch Sosu",
                             Price = 3m,
@@ -673,7 +673,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 7,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2085),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(591),
                             Image = "/ProjeResimler/Mayonez.png",
                             Name = "Mayonez",
                             Price = 3m,
@@ -683,7 +683,7 @@ namespace BurgerMVC.DataLayer.Migrations
                         new
                         {
                             ID = 8,
-                            CreatedTime = new DateTime(2023, 4, 5, 16, 6, 46, 877, DateTimeKind.Local).AddTicks(2086),
+                            CreatedTime = new DateTime(2023, 4, 5, 16, 4, 35, 77, DateTimeKind.Local).AddTicks(592),
                             Image = "/ProjeResimler/Sarımsaklı.png",
                             Name = "Sarımsaklı Mayonez",
                             Price = 3m,
