@@ -17,18 +17,30 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav  mx-auto ">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-action="Index" asp-controller="Admin" asp-area="Admin"> ADMIN <span class="sr-only">(current)</span></a>
+                            </li>
+                        }
                         <li class="nav-item active">
-                            <a class="nav-link" href="/home/index">Anasayfa <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" asp-action="Index" asp-controller="Home"> Anasayfa <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Menu/Menu/">Menüler</a>
+                            <a class="nav-link" asp-action="Menu" asp-controller="Menu">Menüler</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/About/About">Hakkımızda</a>
+                            <a class="nav-link" asp-action="About" asp-controller="About">Hakkımızda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Book/Book">Rezervasyon</a>
+                            <a class="nav-link" asp-action="Book" asp-controller="Book">Rezervasyon</a>
                         </li>
+                        @if (User.IsInRole("Customer,Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="Logout" asp-controller="User">Çıkış Yap</a>
+                            </li>
+                        }
                     </ul>
                     <div class="user_option">
                         <a asp-action="Register" asp-controller="User" class="user_link">
@@ -42,7 +54,7 @@
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
                         </form>
-                        <a asp-action="OrderList" asp-controller="Order" class="order_online">
+                        <a asp-action="Order" asp-controller="Order" class="order_online">
                             Sipariş Et
                         </a>
                     </div>
