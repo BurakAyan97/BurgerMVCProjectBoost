@@ -43,7 +43,7 @@ namespace BurgerMVCBoost.Controllers
                 _mapper.Map(register, appUser);
 
                 IdentityResult result = await _userManager.CreateAsync(appUser, register.Password);
-                await _userManager.AddToRoleAsync(appUser, "CUSTOMER");
+                await _userManager.AddToRoleAsync(appUser, "Customer");
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Login");
@@ -138,7 +138,7 @@ namespace BurgerMVCBoost.Controllers
 
                     //Facebook'tan gelen Claimleri uygun eşlendikleri propertylere atıyoruz.
                     IdentityResult createResult = await _userManager.CreateAsync(user);
-                    await _userManager.AddToRoleAsync(user, "CUSTOMER");
+                    await _userManager.AddToRoleAsync(user, "Customer");
                     //Kullanıcı kaydını yapıyoruz.
                     if (createResult.Succeeded)
                     {
@@ -196,7 +196,7 @@ namespace BurgerMVCBoost.Controllers
                     };
                     //Facebook'tan gelen Claimleri uygun eşlendikleri propertylere atıyoruz.
                     IdentityResult createResult = await _userManager.CreateAsync(user);
-                    await _userManager.AddToRoleAsync(user, "CUSTOMER");
+                    await _userManager.AddToRoleAsync(user, "Customer");
                     //Kullanıcı kaydını yapıyoruz.
                     if (createResult.Succeeded)
                     {

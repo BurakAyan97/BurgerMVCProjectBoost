@@ -36,29 +36,39 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-action="Book" asp-controller="Book">Rezervasyon</a>
                         </li>
-                        @if (User.IsInRole("Customer,Admin"))
+                        @if (User.IsInRole("Admin") || User.IsInRole("Customer"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-action="Logout" asp-controller="User">Çıkış Yap</a>
+                                <a class="nav-link" asp-action="Logout" asp-controller="User">Çıkış</a>
                             </li>
                         }
-                        
+
                     </ul>
                     <div class="user_option">
-                        <a asp-action="Register" asp-controller="User" class="user_link">
-                            <i class="fa fa-user " aria-hidden="true"></i>
-                        </a>
+                        @if (!User.IsInRole("Customer") && !User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Login" asp-controller="User" class="user_link">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </a>
+                        }
                         <a class="cart_link" href="#">
                             <i class="fa fa-shopping-cart" @*style="color:white;"*@ aria-hidden="true"></i>
                         </a>
-                        <form class="form-inline" style="margin:0px;">
-                            <a class="btn nav_search-btn" href="#">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </a>
+                        <form class="form-inline">
+                            
                         </form>
-                        <a href="/Order/Order/" class="order_online">
-                            Sipariş Et
-                        </a>
+                        @if (User.IsInRole("Customer") || User.IsInRole("Admin"))
+                        {
+                            <a asp-action="OrderList" asp-controller="Order" class="order_online">
+                                Sipariş Et
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-action="OrderList" asp-controller="Order" class="order_online">
+                                Giriş Yap
+                            </a>
+                        }
                     </div>
                 </div>
             </nav>

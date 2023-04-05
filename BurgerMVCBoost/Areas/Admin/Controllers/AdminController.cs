@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using BurgerMVC.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BurgerMVCBoost.Areas.Admin.Controllers
@@ -7,7 +9,7 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        public IActionResult Index()
+        public  IActionResult Index()
         {
             return View();
         }
