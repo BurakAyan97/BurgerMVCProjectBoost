@@ -1,6 +1,7 @@
 ﻿using BurgerMVC.BusinessLayer.Concrete;
 using BurgerMVC.DataLayer.Concrete;
 using BurgerMVC.DataLayer.EntityFramework;
+using BurgerMVC.EntityLayer.Concrete;
 using BurgerMVCBoost.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -27,9 +28,19 @@ namespace BurgerMVCBoost.Controllers
             };
             return View(vm);
         }
-        public IActionResult Order(int id) 
-        { 
-            return View(id);
+        public IActionResult Order(int id)
+        {
+            AllMenuVM vm = new AllMenuVM()
+            {
+                Extras = extraManager.TGetList(),
+                Desserts = dessertManager.TGetList(),
+                Sauces = sauceManager.TGetList(),
+                Menus = menuManager.TGetList(),
+                Drinks = drinkManager.TGetList(),
+
+            };
+            vm.Menu=menuManager.TGetByID(id);
+            return View(vm);
         }
     }
 }
