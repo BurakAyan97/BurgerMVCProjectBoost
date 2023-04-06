@@ -1,4 +1,5 @@
-﻿using BurgerMVC.BusinessLayer.Concrete;
+﻿using BurgerMVC.BusinessLayer.Abstract;
+using BurgerMVC.BusinessLayer.Concrete;
 using BurgerMVC.DataLayer.Concrete;
 using BurgerMVC.DataLayer.EntityFramework;
 using BurgerMVC.EntityLayer.Concrete;
@@ -10,12 +11,18 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
     [Area("Admin")]
     public class DrinkController : Controller
     {
-        DrinkManager drinkManager = new DrinkManager(new EfDrinkDal());
+       IDrinkService _drinkService;
+
+        public DrinkController(IDrinkService drinkService)
+        {
+            _drinkService = drinkService;
+        }
+
         public IActionResult Index()
         {
             DrinkViewModel model = new DrinkViewModel()
             {
-                Drinks = drinkManager.TGetList(),
+                Drinks = _drinkService.TGetList(),
                 Drink = new Drink()
             };
             return View(model);
@@ -33,14 +40,14 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
             if (drink.UpdatedTime is null)
                 drink.UpdatedTime = drink.CreatedTime;
 
-            drinkManager.TAdd(drink);
+            _drinkService.TAdd(drink);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult DrinkUpdate(int id)
         {
-            Drink drink = drinkManager.TGetByID(id);
+            Drink drink = _drinkService.TGetByID(id);
             return PartialView(drink);
         }
 
@@ -48,21 +55,21 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
         public IActionResult DrinkUpdate(Drink drink)
         {
             drink.UpdatedTime = DateTime.Now;
-            drinkManager.TUpdate(drink);
+            _drinkService.TUpdate(drink);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult DrinkDelete(int id)
         {
-            var value = drinkManager.TGetByID(id);
+            var value = _drinkService.TGetByID(id);
             return PartialView(value);
         }
 
         [HttpPost]
         public IActionResult DrinkDelete(Drink drink)
         {
-            drinkManager.TDelete(drink);
+            _drinkService.TDelete(drink);
             return RedirectToAction("Index");
         }
     }

@@ -1,4 +1,5 @@
-﻿using BurgerMVC.BusinessLayer.Concrete;
+﻿using BurgerMVC.BusinessLayer.Abstract;
+using BurgerMVC.BusinessLayer.Concrete;
 using BurgerMVC.DataLayer.Concrete;
 using BurgerMVC.DataLayer.EntityFramework;
 using BurgerMVC.EntityLayer.Concrete;
@@ -11,38 +12,51 @@ namespace BurgerMVCBoost.Controllers
     [Authorize(Roles = "Customer,Admin")]
     public class OrderController : Controller
     {
-        MenuManager menuManager = new MenuManager(new EfMenuDal());
-        ExtraManager extraManager = new ExtraManager(new EfExtraDal());
-        DessertManager dessertManager = new DessertManager(new EfDessertDal());
-        SauceManager sauceManager = new SauceManager(new EfSauceDal());
-        DrinkManager drinkManager = new DrinkManager(new EfDrinkDal());
-        
+        IMenuService _menuService;
+        IExtraService _extraService;
+        IDessertService _dessertService;
+        ISauceService _sauceService;
+        IDrinkService _drinkService;
+        public OrderController(IMenuService menuService, IExtraService extraService, IDessertService dessertService, ISauceService sauceService, IDrinkService drinkService)
+        {
+            _menuService = menuService;
+            _extraService = extraService;
+            _dessertService = dessertService;
+            _sauceService = sauceService;
+            _drinkService = drinkService;
+        }
+        //MenuManager menuManager = new MenuManager(new EfMenuDal());
+        //ExtraManager extraManager = new ExtraManager(new EfExtraDal());
+        //DessertManager dessertManager = new DessertManager(new EfDessertDal());
+        //SauceManager sauceManager = new SauceManager(new EfSauceDal());
+        //DrinkManager drinkManager = new DrinkManager(new EfDrinkDal());
+
         [HttpGet]
         public IActionResult OrderList()
         {
             AllMenuVM vm = new AllMenuVM()
             {
-                Extras = extraManager.TGetList(),
-                Desserts = dessertManager.TGetList(),
-                Sauces = sauceManager.TGetList(),
-                Menus = menuManager.TGetList(),
-                Drinks = drinkManager.TGetList(),
+                Extras = _extraService.TGetList(),
+                Desserts = _dessertService.TGetList(),
+                Sauces = _sauceService.TGetList(),
+                Menus = _menuService.TGetList(),
+                Drinks = _drinkService.TGetList(),
             };
             return View(vm);
         }
-        
+
         public IActionResult Order(int id)
         {
             AllMenuVM vm = new AllMenuVM()
             {
-                Extras = extraManager.TGetList(),
-                Desserts = dessertManager.TGetList(),
-                Sauces = sauceManager.TGetList(),
-                Menus = menuManager.TGetList(),
-                Drinks = drinkManager.TGetList(),
+                Extras = _extraService.TGetList(),
+                Desserts = _dessertService.TGetList(),
+                Sauces = _sauceService.TGetList(),
+                Menus = _menuService.TGetList(),
+                Drinks = _drinkService.TGetList(),
 
             };
-            vm.Menu=menuManager.TGetByID(id);
+            vm.Menu = _menuService.TGetByID(id);
             return View(vm);
         }
     }

@@ -1,5 +1,6 @@
 using BurgerMVC.DataLayer.Concrete;
 using BurgerMVC.EntityLayer.Concrete;
+using BusinessLayer.Container;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.Options;
@@ -20,6 +21,7 @@ builder.Services.AddIdentity<AppUser, AppRole>(
         opt.Password.RequireNonAlphanumeric = false;
     }
     ).AddRoles<AppRole>().AddEntityFrameworkStores<BurgerDbContext>();
+builder.Services.ContainerDependencies();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -47,6 +49,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404", "?code={0}");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

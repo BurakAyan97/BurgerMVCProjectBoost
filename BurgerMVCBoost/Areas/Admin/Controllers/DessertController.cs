@@ -1,4 +1,5 @@
-﻿using BurgerMVC.BusinessLayer.Concrete;
+﻿using BurgerMVC.BusinessLayer.Abstract;
+using BurgerMVC.BusinessLayer.Concrete;
 using BurgerMVC.DataLayer.EntityFramework;
 using BurgerMVC.EntityLayer.Concrete;
 using BurgerMVCBoost.Areas.Admin.Models;
@@ -9,12 +10,18 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
     [Area("Admin")]
     public class DessertController : Controller
     {
-        DessertManager dessertManager = new DessertManager(new EfDessertDal());
+        IDessertService _dessertService;
+
+        public DessertController(IDessertService dessertService)
+        {
+            _dessertService = dessertService;
+        }
+
         public IActionResult Index()
         {
             DessertViewModel model = new DessertViewModel()
             {
-                Desserts = dessertManager.TGetList(),
+                Desserts = _dessertService.TGetList(),
                 Dessert = new Dessert()
             };
             return View(model);
@@ -32,14 +39,14 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
             if (dessert.UpdatedTime is null)
                 dessert.UpdatedTime = dessert.CreatedTime;
             
-            dessertManager.TAdd(dessert);
+            _dessertService.TAdd(dessert);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult DessertUpdate(int id)
         {
-            Dessert dessert = dessertManager.TGetByID(id);
+            Dessert dessert = _dessertService.TGetByID(id);
             return PartialView(dessert);
         }
 
@@ -47,21 +54,21 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
         public IActionResult DessertUpdate(Dessert dessert)
         {
             dessert.UpdatedTime = DateTime.Now;
-            dessertManager.TUpdate(dessert);
+            _dessertService.TUpdate(dessert);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult DessertDelete(int id)
         {
-            var value = dessertManager.TGetByID(id);
+            var value = _dessertService.TGetByID(id);
             return PartialView(value);
         }
 
         [HttpPost]
         public IActionResult DessertDelete(Dessert dessert)
         {
-            dessertManager.TDelete(dessert);
+            _dessertService.TDelete(dessert);
             return RedirectToAction("Index");
         }
     }

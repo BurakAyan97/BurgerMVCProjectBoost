@@ -1,4 +1,5 @@
-﻿using BurgerMVC.BusinessLayer.Concrete;
+﻿using BurgerMVC.BusinessLayer.Abstract;
+using BurgerMVC.BusinessLayer.Concrete;
 using BurgerMVC.DataLayer.EntityFramework;
 using BurgerMVC.EntityLayer.Concrete;
 using BurgerMVCBoost.Areas.Admin.Models;
@@ -9,12 +10,18 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
     [Area("Admin")]
     public class SauceController : Controller
     {
-        SauceManager sauceManager = new SauceManager(new EfSauceDal());
+        ISauceService _sauceService;
+
+        public SauceController(ISauceService sauceService)
+        {
+            _sauceService = sauceService;
+        }
+
         public IActionResult Index()
         {
             SauceViewModel model = new SauceViewModel()
             {
-                Sauces = sauceManager.TGetList(),
+                Sauces = _sauceService.TGetList(),
                 Sauce = new Sauce()
             };
             return View(model);
@@ -32,14 +39,14 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
             if (sauce.UpdatedTime is null)
                 sauce.UpdatedTime = sauce.CreatedTime;
 
-            sauceManager.TAdd(sauce);
+            _sauceService.TAdd(sauce);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult SauceUpdate(int id)
         {
-            Sauce sauce = sauceManager.TGetByID(id);
+            Sauce sauce = _sauceService.TGetByID(id);
             return PartialView(sauce);
         }
 
@@ -47,21 +54,21 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
         public IActionResult SauceUpdate(Sauce sauce)
         {
             sauce.UpdatedTime = DateTime.Now;
-            sauceManager.TUpdate(sauce);
+            _sauceService.TUpdate(sauce);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult SauceDelete(int id)
         {
-            var value = sauceManager.TGetByID(id);
+            var value = _sauceService.TGetByID(id);
             return PartialView(value);
         }
 
         [HttpPost]
         public IActionResult SauceDelete(Sauce sauce)
         {
-            sauceManager.TDelete(sauce);
+            _sauceService.TDelete(sauce);
             return RedirectToAction("Index");
         }
     }

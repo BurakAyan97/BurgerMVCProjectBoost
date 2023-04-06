@@ -1,4 +1,5 @@
-﻿using BurgerMVC.BusinessLayer.Concrete;
+﻿using BurgerMVC.BusinessLayer.Abstract;
+using BurgerMVC.BusinessLayer.Concrete;
 using BurgerMVC.DataLayer.EntityFramework;
 using BurgerMVC.EntityLayer.Concrete;
 using BurgerMVCBoost.Areas.Admin.Models;
@@ -9,12 +10,18 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
     [Area("Admin")]
     public class MenuController : Controller
     {
-        MenuManager menuManager = new MenuManager(new EfMenuDal());
+        IMenuService _menuService;
+
+        public MenuController(IMenuService menuService)
+        {
+            _menuService = menuService;
+        }
+
         public IActionResult Index()
         {
             MenuViewModel model = new MenuViewModel()
             {
-                Menus = menuManager.TGetList(),
+                Menus = _menuService.TGetList(),
                 Menu = new Menu()
             };
             return View(model);
@@ -29,14 +36,14 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult MenuAdd(Menu menu)
         {
-            menuManager.TAdd(menu);
+            _menuService.TAdd(menu);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult MenuUpdate(int id)
         {
-            Menu menu = menuManager.TGetByID(id);
+            Menu menu = _menuService.TGetByID(id);
             return PartialView(menu);
         }
 
@@ -44,21 +51,21 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
         public IActionResult MenuUpdate(Menu menu)
         {
             menu.UpdatedTime = DateTime.Now;
-            menuManager.TUpdate(menu);
+            _menuService.TUpdate(menu);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult MenuDelete(int id)
         {
-            var value = menuManager.TGetByID(id);
+            var value = _menuService.TGetByID(id);
             return PartialView(value);
         }
 
         [HttpPost]
         public IActionResult MenuDelete(Menu menu)
         {
-            menuManager.TDelete(menu);
+            _menuService.TDelete(menu);
             return RedirectToAction("Index");
         }
     }

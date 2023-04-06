@@ -1,4 +1,5 @@
-﻿using BurgerMVC.BusinessLayer.Concrete;
+﻿using BurgerMVC.BusinessLayer.Abstract;
+using BurgerMVC.BusinessLayer.Concrete;
 using BurgerMVC.DataLayer.Concrete;
 using BurgerMVC.DataLayer.EntityFramework;
 using BurgerMVC.EntityLayer.Concrete;
@@ -10,12 +11,18 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
     [Area("Admin")]
     public class ExtraController : Controller
     {
-        ExtraManager extraManager = new ExtraManager(new EfExtraDal());
+        IExtraService _extraService;
+
+        public ExtraController(IExtraService extraService)
+        {
+            _extraService = extraService;
+        }
+
         public IActionResult Index()
         {
             ExtraViewModel model = new ExtraViewModel()
             {
-                Extras = extraManager.TGetList(),
+                Extras = _extraService.TGetList(),
                 Extra = new Extra()
             };
             return View(model);
@@ -33,14 +40,14 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
             if (extra.UpdatedTime is null)
                 extra.UpdatedTime = extra.CreatedTime;
 
-            extraManager.TAdd(extra);
+            _extraService.TAdd(extra);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult ExtraUpdate(int id)
         {
-            Extra extra = extraManager.TGetByID(id);
+            Extra extra = _extraService.TGetByID(id);
             return PartialView(extra);
         }
 
@@ -48,21 +55,21 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
         public IActionResult ExtraUpdate(Extra extra)
         {
             extra.UpdatedTime = DateTime.Now;
-            extraManager.TUpdate(extra);
+            _extraService.TUpdate(extra);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult ExtraDelete(int id)
         {
-            var value = extraManager.TGetByID(id);
+            var value = _extraService.TGetByID(id);
             return PartialView(value);
         }
 
         [HttpPost]
         public IActionResult ExtraDelete(Extra extra)
         {
-            extraManager.TDelete(extra);
+            _extraService.TDelete(extra);
             return RedirectToAction("Index");
         }
     }
