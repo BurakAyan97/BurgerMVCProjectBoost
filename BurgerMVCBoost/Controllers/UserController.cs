@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mail;
 using System.Security.Claims;
 
 namespace BurgerMVCBoost.Controllers
@@ -97,9 +98,40 @@ namespace BurgerMVCBoost.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login");
         }
-        public async Task<IActionResult> ForgotPassword()
+        public  IActionResult ForgotPassword()
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordVM forgot)
+        {
+            Guid guid= Guid.NewGuid();
+            forgot.Password=guid.ToString().Substring(0,8);
+            var user= await _userManager.FindByEmailAsync(forgot.Email);
+            user.PasswordHash=_userManager.PasswordHasher.HashPassword(user,forgot.Password);
+            await _userManager.UpdateAsync(user);
+            forgot.UserName=user.UserName;
+            SendMail(forgot);
+           
+            
+            return RedirectToAction("Login");
+        }
+        private void SendMail(ForgotPasswordVM forgot)
+        {
+            MailMessage mesaj = new MailMessage();
+            mesaj.From = new MailAddress("ucsilahsorlerburger@gmail.com");
+            mesaj.To.Add($"{forgot.Email}");
+            mesaj.Subject = "Şifre Sıfırlama";
+            mesaj.Body = $"Şifreniz Sıfırlandı.\nKullanıcı Adınız={forgot.UserName}\nYeni Şifreniz={forgot.Password}";
+
+            SmtpClient a = new SmtpClient();
+            a.Credentials = new System.Net.NetworkCredential("ucsilahsorlerburger@gmail.com", "xdgpgeouvssyfpzk");
+            a.Port = 587;
+            a.Host = "smtp.gmail.com";
+            a.EnableSsl = true;
+            object userState = mesaj;
+            //a.Send(mesaj);
+            a.SendAsync(mesaj, userState);
         }
 
         public IActionResult FacebookLogin(string ReturnUrl)
