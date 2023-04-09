@@ -33,7 +33,11 @@ namespace BurgerMVC.BusinessLayer.Concrete
         {
             return _dessertDal.GetByID(id);
         }
-                
+        public Dessert TGetByID(Guid id)
+        {
+            return _dessertDal.GetByID(id);
+        }
+
         public List<Dessert> TGetList()
         {
             return _dessertDal.GetList();

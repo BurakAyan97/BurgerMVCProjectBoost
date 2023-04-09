@@ -24,6 +24,7 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
                 Desserts = _dessertService.TGetList(),
                 Dessert = new Dessert()
             };
+
             return View(model);
         }
 
@@ -38,7 +39,7 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
         {
             if (dessert.UpdatedTime is null)
                 dessert.UpdatedTime = dessert.CreatedTime;
-            
+
             _dessertService.TAdd(dessert);
             return RedirectToAction("Index");
         }
@@ -54,6 +55,7 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
         public IActionResult DessertUpdate(Dessert dessert)
         {
             dessert.UpdatedTime = DateTime.Now;
+           
             _dessertService.TUpdate(dessert);
             return RedirectToAction("Index");
         }

@@ -12,10 +12,21 @@ namespace BurgerMVC.BusinessLayer.ValidationRules
     {
         public UserValidator()
         {
-            RuleFor(x => x.UserName).NotEmpty().WithMessage("Kullanıcı adı boş bırakılamaz");
-            RuleFor(x => x.Email).NotEmpty().WithMessage("Email boş bırakılamaz.");
-            RuleFor(x => x.Password).NotEmpty().WithMessage("Şifreniz boş olamaz.");
-            RuleFor(x => x.ConfirmPassword).NotEmpty().WithMessage("Şifreler aynı değil.");
+            RuleFor(x => x.UserName)
+                .NotEmpty()
+                .WithMessage("Kullanıcı adı boş bırakılamaz");
+
+            RuleFor(x => x.Email)
+                .NotEmpty()
+                .WithMessage("Email boş bırakılamaz.");
+
+            RuleFor(x => x.Password)
+                .NotEmpty()
+                .WithMessage("Şifreniz boş olamaz.");
+
+            RuleFor(x => x.ConfirmPassword)
+                .NotEmpty()
+                .WithMessage("Şifreler aynı değil.");
         }
     }
 }

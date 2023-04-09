@@ -23,7 +23,12 @@ namespace BurgerMVC.DataLayer.Repository
         {
             using var c = new BurgerDbContext();
             return c.Set<T>().Find(id);
+        }
 
+        public T GetByID(Guid id)
+        {
+            using var c = new BurgerDbContext();
+            return c.Set<T>().Find(id);
         }
 
         public List<T> GetList()

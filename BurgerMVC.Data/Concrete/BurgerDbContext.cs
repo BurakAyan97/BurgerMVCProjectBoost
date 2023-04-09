@@ -1,9 +1,11 @@
 ﻿using BurgerMVC.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,6 +25,8 @@ namespace BurgerMVC.DataLayer.Concrete
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             builder.Entity<Menu>().HasData(
                 new Menu { ID = 1, Description = "Burger(Balık+Domates+Peynir+Turşu)+Patates(200 gr)+İçecek(Kola)", Name = "Balık Burger Menu", Price = 100, CreatedTime = DateTime.Now, Stock = 250, Status = true, Image = "/ProjeResimler/BalikBurger.jpg" },
@@ -72,14 +76,17 @@ namespace BurgerMVC.DataLayer.Concrete
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer("Server=DESKTOP-S2C7UGO;Database=BurgerMVCProjectDB;User ID=sa;Password=arkadas1");
-            //optionsBuilder.UseSqlServer("Server=DESKTOP-81CS8R3;Database=BurgerMVCProjectDB;User ID=sa;Password=3157261Ho");
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-S2C7UGO;Database=BurgerMVCProjectDB;User ID=sa;Password=arkadas1");
+            optionsBuilder.UseSqlServer("Server =.; Database = BurgerProjectSonDB; Trusted_Connection = True; TrustServerCertificate = True");
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-81CS8R3;Database=BurgerMVCProjectSonDB;User ID=sa;Password=3157261Ho");
             base.OnConfiguring(optionsBuilder);
         }
         public DbSet<Dessert> Desserts { get; set; }
         public DbSet<Extra> Extras { get; set; }
         public DbSet<Menu> Menus { get; set; }
-        public DbSet<Dessert> Orders { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<Drink> Drinks { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
     }
 }

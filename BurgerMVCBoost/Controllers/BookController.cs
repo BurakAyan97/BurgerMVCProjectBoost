@@ -6,19 +6,18 @@ namespace BurgerMVCBoost.Controllers
 {
     public class BookController : Controller
     {
-        public IActionResult Book() 
-        { 
+        public IActionResult Book()
+        {
             BookingVM bookingVM = new BookingVM();
-            return View(bookingVM); 
+            return View(bookingVM);
         }
-       
+
         [HttpPost]
         public IActionResult Book(BookingVM bookingVM)
         {
             SendMail(bookingVM);
-                                   
-            
-            return RedirectToAction("Index","Home");
+
+            return RedirectToAction("Index", "Home");
         }
 
         private void SendMail(BookingVM bookingVM)
@@ -36,7 +35,6 @@ namespace BurgerMVCBoost.Controllers
             a.Host = "smtp.gmail.com";
             a.EnableSsl = true;
             object userState = mesaj;
-            //a.Send(mesaj);
             a.SendAsync(mesaj, userState);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using BurgerMVC.BusinessLayer.Abstract;
 using BurgerMVC.DataLayer.Abstract;
+using BurgerMVC.DataLayer.EntityFramework;
 using BurgerMVC.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,11 @@ namespace BurgerMVC.BusinessLayer.Concrete
 
         public AppUser TGetByID(int id)
         {
-            throw new NotImplementedException();
+            return _appUserDal.GetByID(id);
+        }
+        public AppUser TGetByID(Guid id)
+        {
+            return _appUserDal.GetByID(id);
         }
 
         public List<AppUser> TGetList()
@@ -46,7 +51,7 @@ namespace BurgerMVC.BusinessLayer.Concrete
 
         public void TUpdate(AppUser t)
         {
-            throw new NotImplementedException();
+             _appUserDal.Update(t);
         }
     }
 }

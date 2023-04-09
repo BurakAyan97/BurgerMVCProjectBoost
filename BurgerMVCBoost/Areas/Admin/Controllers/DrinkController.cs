@@ -55,7 +55,9 @@ namespace BurgerMVCBoost.Areas.Admin.Controllers
         public IActionResult DrinkUpdate(Drink drink)
         {
             drink.UpdatedTime = DateTime.Now;
+            
             _drinkService.TUpdate(drink);
+           
             return RedirectToAction("Index");
         }
 

@@ -11,7 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<BurgerDbContext>();
+
 builder.Services.AddIdentity<AppUser, AppRole>(
     opt =>
     {
@@ -19,10 +21,12 @@ builder.Services.AddIdentity<AppUser, AppRole>(
         opt.Password.RequireUppercase = false;
         opt.Password.RequireLowercase = false;
         opt.Password.RequireNonAlphanumeric = false;
-    }
-    ).AddRoles<AppRole>().AddEntityFrameworkStores<BurgerDbContext>();
+    }).AddRoles<AppRole>().AddEntityFrameworkStores<BurgerDbContext>();
+
 builder.Services.ContainerDependencies();
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/User/Login";
@@ -38,6 +42,15 @@ builder.Services.AddAuthentication().AddGoogle(x =>
 {
     x.ClientId = builder.Configuration["web:client_id"];
     x.ClientSecret = builder.Configuration["web:client_secret"];
+});
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options => 
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
 });
 
 var app = builder.Build();
@@ -56,6 +69,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession();
 
 app.MapAreaControllerRoute(
     name: "Admin",

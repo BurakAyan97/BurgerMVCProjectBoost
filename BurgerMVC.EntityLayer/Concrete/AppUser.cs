@@ -11,15 +11,19 @@ namespace BurgerMVC.EntityLayer.Concrete
     {
         public string? Name { get; set; }
         public string? Surname { get; set; }
-        public string? Comment { get; set; }
        
 
         //Navigation Props
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+
+
         public AppUser()
         {
             Orders = new HashSet<Order>();
+            Comments = new HashSet<Comment>();
         }
+
 
     }
 }

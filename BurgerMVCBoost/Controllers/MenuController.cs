@@ -24,11 +24,6 @@ namespace BurgerMVCBoost.Controllers
             _sauceService = sauceService;
             _drinkService = drinkService;
         }
-        //MenuManager menuManager = new MenuManager(new EfMenuDal());
-        //ExtraManager extraManager = new ExtraManager(new EfExtraDal());
-        //DessertManager dessertManager = new DessertManager(new EfDessertDal());
-        //SauceManager sauceManager = new SauceManager(new EfSauceDal());
-        //DrinkManager drinkManager = new DrinkManager(new EfDrinkDal());
         public IActionResult Menu()
         {
             AllMenuVM vm = new AllMenuVM()

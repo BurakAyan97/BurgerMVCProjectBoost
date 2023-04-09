@@ -4,6 +4,15 @@ namespace BurgerMVCBoost.ViewModel
 {
     public class AllMenuVM
     {
+        public AllMenuVM()
+        {
+            Extras = new List<Extra>();
+            Sauces = new List<Sauce>();
+            Desserts = new List<Dessert>();
+            Menus = new List<Menu>();
+            Drinks= new List<Drink>();
+        }
+
         public List<Extra> Extras { get; set; }
         public Extra Extra { get; set; }
 

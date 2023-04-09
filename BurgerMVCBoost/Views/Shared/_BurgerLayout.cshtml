@@ -20,4 +20,6 @@
 
     @await Html.PartialAsync("~/Views/Layout_Partial/_PartialScripts.cshtml")
 
+    @await RenderSectionAsync("Scripts", false)
+
 </body>

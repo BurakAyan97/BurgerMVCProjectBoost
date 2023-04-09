@@ -15,10 +15,13 @@ namespace BurgerMVC.EntityLayer.Concrete
         public Size Size { get; set; }
 
         //Nav Props
-        public ICollection<OrderDetails> OrderDetails { get; set; }
+        public ICollection<Order> Orders { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+
         public Menu()
         {
-            OrderDetails = new HashSet<OrderDetails>();
+            Orders = new HashSet<Order>();
+            Comments = new HashSet<Comment>();
         }
 
     }

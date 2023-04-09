@@ -10,7 +10,6 @@
                 Menüler
             </h2>
         </div>
-
         <ul class="filters_menu">
             <li class="active" data-filter="*">All</li>
             <li data-filter=".sauce">Soslar</li>
@@ -19,18 +18,15 @@
             <li data-filter=".dessert">Tatlılar</li>
             <li data-filter=".drink">İçecekler</li>
         </ul>
-
         <div class="filters-content">
             <div class="row grid">
                 @foreach (var menu in Model.Menus)
                 {
-
-
                     <div class="col-sm-6 col-lg-4 all menu">
                         <div class="box">
                             <div>
                                 <div>
-                                <input asp-for="Menu.ID" type="hidden"/>
+                                    <input asp-for="Menu.ID" type="hidden" />
                                 </div>
                                 <div class="img-box">
                                     <img src="@menu.Image" alt="">
@@ -46,7 +42,7 @@
                                         <h6>
                                             @menu.Price
                                         </h6>
-                                        <a class="btn btn-warning" href="/Order/Order/@menu.ID" >
+                                        <a class="btn btn-warning" href="/Order/Order/@menu.ID">
                                             <i class="fa fa-shopping-cart"></i>
                                         </a>
                                     </div>
@@ -83,11 +79,8 @@
                         </div>
                     </div>
                 }
-                
                 @foreach (var dessert in Model.Desserts)
                 {
-
-
                     <div class="col-sm-6 col-lg-4 all dessert">
                         <div class="box">
                             <div>
@@ -116,8 +109,6 @@
                 }
                 @foreach (var sauce in Model.Sauces)
                 {
-
-
                     <div class="col-sm-6 col-lg-4 all sauce">
                         <div class="box">
                             <div>
@@ -146,8 +137,6 @@
                 }
                 @foreach (var drink in Model.Drinks)
                 {
-
-
                     <div class="col-sm-6 col-lg-4 all drink">
                         <div class="box">
                             <div>
@@ -178,3 +167,4 @@
         </div>
     </div>
 </section>
+

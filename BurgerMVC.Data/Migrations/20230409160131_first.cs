@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BurgerMVC.DataLayer.Migrations
 {
-    public partial class Init : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,9 +28,8 @@ namespace BurgerMVC.DataLayer.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -52,13 +51,13 @@ namespace BurgerMVC.DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Dessert",
+                name: "Desserts",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Price = table.Column<decimal>(type: "money", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -67,7 +66,7 @@ namespace BurgerMVC.DataLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Dessert", x => x.ID);
+                    table.PrimaryKey("PK_Desserts", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -254,90 +253,215 @@ namespace BurgerMVC.DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Order",
+                name: "Orders",
                 columns: table => new
                 {
                     OrderID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrderName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    AppUserID = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Order", x => x.OrderID);
+                    table.PrimaryKey("PK_Orders", x => x.OrderID);
                     table.ForeignKey(
-                        name: "FK_Order_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Orders_AspNetUsers_UserID",
+                        column: x => x.UserID,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderDetails",
+                name: "Comments",
                 columns: table => new
                 {
-                    OrderDetailsID = table.Column<int>(type: "int", nullable: false)
+                    CommentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderID = table.Column<int>(type: "int", nullable: false),
-                    SauceID = table.Column<int>(type: "int", nullable: true),
-                    ExtraID = table.Column<int>(type: "int", nullable: true),
-                    MenuID = table.Column<int>(type: "int", nullable: false),
-                    DessertID = table.Column<int>(type: "int", nullable: true),
-                    DrinkID = table.Column<int>(type: "int", nullable: false)
+                    CommentText = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AppUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    MenuId = table.Column<int>(type: "int", nullable: true),
+                    DessertId = table.Column<int>(type: "int", nullable: true),
+                    DrinkId = table.Column<int>(type: "int", nullable: true),
+                    ExtraId = table.Column<int>(type: "int", nullable: true),
+                    SauceId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderDetails", x => x.OrderDetailsID);
+                    table.PrimaryKey("PK_Comments", x => x.CommentId);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Dessert_DessertID",
-                        column: x => x.DessertID,
-                        principalTable: "Dessert",
+                        name: "FK_Comments_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Comments_Desserts_DessertId",
+                        column: x => x.DessertId,
+                        principalTable: "Desserts",
                         principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Drinks_DrinkID",
-                        column: x => x.DrinkID,
+                        name: "FK_Comments_Drinks_DrinkId",
+                        column: x => x.DrinkId,
                         principalTable: "Drinks",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Extras_ExtraID",
-                        column: x => x.ExtraID,
+                        name: "FK_Comments_Extras_ExtraId",
+                        column: x => x.ExtraId,
                         principalTable: "Extras",
                         principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Menus_MenuID",
-                        column: x => x.MenuID,
+                        name: "FK_Comments_Menus_MenuId",
+                        column: x => x.MenuId,
                         principalTable: "Menus",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Order_OrderID",
-                        column: x => x.OrderID,
-                        principalTable: "Order",
-                        principalColumn: "OrderID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_OrderDetails_Sauce_SauceID",
-                        column: x => x.SauceID,
+                        name: "FK_Comments_Sauce_SauceId",
+                        column: x => x.SauceId,
                         principalTable: "Sauce",
                         principalColumn: "ID");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "DessertOrder",
+                columns: table => new
+                {
+                    DessertsID = table.Column<int>(type: "int", nullable: false),
+                    OrdersOrderID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DessertOrder", x => new { x.DessertsID, x.OrdersOrderID });
+                    table.ForeignKey(
+                        name: "FK_DessertOrder_Desserts_DessertsID",
+                        column: x => x.DessertsID,
+                        principalTable: "Desserts",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DessertOrder_Orders_OrdersOrderID",
+                        column: x => x.OrdersOrderID,
+                        principalTable: "Orders",
+                        principalColumn: "OrderID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DrinkOrder",
+                columns: table => new
+                {
+                    DrinksID = table.Column<int>(type: "int", nullable: false),
+                    OrdersOrderID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DrinkOrder", x => new { x.DrinksID, x.OrdersOrderID });
+                    table.ForeignKey(
+                        name: "FK_DrinkOrder_Drinks_DrinksID",
+                        column: x => x.DrinksID,
+                        principalTable: "Drinks",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DrinkOrder_Orders_OrdersOrderID",
+                        column: x => x.OrdersOrderID,
+                        principalTable: "Orders",
+                        principalColumn: "OrderID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ExtraOrder",
+                columns: table => new
+                {
+                    ExtrasID = table.Column<int>(type: "int", nullable: false),
+                    OrdersOrderID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExtraOrder", x => new { x.ExtrasID, x.OrdersOrderID });
+                    table.ForeignKey(
+                        name: "FK_ExtraOrder_Extras_ExtrasID",
+                        column: x => x.ExtrasID,
+                        principalTable: "Extras",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ExtraOrder_Orders_OrdersOrderID",
+                        column: x => x.OrdersOrderID,
+                        principalTable: "Orders",
+                        principalColumn: "OrderID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MenuOrder",
+                columns: table => new
+                {
+                    MenusID = table.Column<int>(type: "int", nullable: false),
+                    OrdersOrderID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MenuOrder", x => new { x.MenusID, x.OrdersOrderID });
+                    table.ForeignKey(
+                        name: "FK_MenuOrder_Menus_MenusID",
+                        column: x => x.MenusID,
+                        principalTable: "Menus",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MenuOrder_Orders_OrdersOrderID",
+                        column: x => x.OrdersOrderID,
+                        principalTable: "Orders",
+                        principalColumn: "OrderID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderSauce",
+                columns: table => new
+                {
+                    OrdersOrderID = table.Column<int>(type: "int", nullable: false),
+                    SaucesID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderSauce", x => new { x.OrdersOrderID, x.SaucesID });
+                    table.ForeignKey(
+                        name: "FK_OrderSauce_Orders_OrdersOrderID",
+                        column: x => x.OrdersOrderID,
+                        principalTable: "Orders",
+                        principalColumn: "OrderID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderSauce_Sauce_SaucesID",
+                        column: x => x.SaucesID,
+                        principalTable: "Sauce",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
-                table: "Dessert",
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { new Guid("1ce9e927-2d41-4770-9816-edf5129fa0cc"), "5c215d4e-8ef1-4aaa-bf69-c8d5535d5144", "Admin", "ADMIN" },
+                    { new Guid("5df094ba-45be-4736-a78e-935f949fa388"), "dbb12044-25ac-4ca0-b215-6aa7b13c5964", "Customer", "CUSTOMER" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Desserts",
                 columns: new[] { "ID", "CreatedTime", "Image", "Name", "Price", "Status", "Stock", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9476), "/ProjeResimler/Cikolata.png", "Çikolata Cookie", 10m, true, 50, null },
-                    { 2, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9477), "/ProjeResimler/Dondurma.png", "Dondurma", 10m, true, 10, null },
-                    { 3, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9479), "/ProjeResimler/Elmali.png", "Elmalı Turta", 25m, true, 70, null },
-                    { 4, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9481), "/ProjeResimler/sufle.png", "Sufle", 30m, true, 45, null },
-                    { 5, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9483), "/ProjeResimler/sundae.png", "Sundae", 17m, true, 100, null }
+                    { 1, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3578), "/ProjeResimler/Cikolata.png", "Çikolata Cookie", 10m, true, 50, null },
+                    { 2, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3580), "/ProjeResimler/Dondurma.png", "Dondurma", 10m, true, 10, null },
+                    { 3, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3581), "/ProjeResimler/Elmali.png", "Elmalı Turta", 25m, true, 70, null },
+                    { 4, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3583), "/ProjeResimler/sufle.png", "Sufle", 30m, true, 45, null },
+                    { 5, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3584), "/ProjeResimler/sundae.png", "Sundae", 17m, true, 100, null }
                 });
 
             migrationBuilder.InsertData(
@@ -345,12 +469,12 @@ namespace BurgerMVC.DataLayer.Migrations
                 columns: new[] { "ID", "CreatedTime", "Image", "Name", "Price", "Status", "Stock", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9495), "/ProjeResimler/Ayran.png", "Ayran", 12m, true, 250, null },
-                    { 2, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9497), "/ProjeResimler/Cola.png", "Kola", 16m, true, 450, null },
-                    { 3, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9499), "/ProjeResimler/Fanta.png", "Fanta", 16m, true, 350, null },
-                    { 4, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9522), "/ProjeResimler/Icetea.png", "Ice Tea", 14m, true, 270, null },
-                    { 5, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9524), "/ProjeResimler/MeyveSuyu.png", "Meyve Suyu", 10m, true, 400, null },
-                    { 6, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9526), "/ProjeResimler/Sprite.png", "Sprite", 14m, true, 130, null }
+                    { 1, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3599), "/ProjeResimler/Ayran.png", "Ayran", 12m, true, 250, null },
+                    { 2, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3601), "/ProjeResimler/Cola.png", "Kola", 16m, true, 450, null },
+                    { 3, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3602), "/ProjeResimler/Fanta.png", "Fanta", 16m, true, 350, null },
+                    { 4, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3603), "/ProjeResimler/Icetea.png", "Ice Tea", 14m, true, 270, null },
+                    { 5, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3604), "/ProjeResimler/MeyveSuyu.png", "Meyve Suyu", 10m, true, 400, null },
+                    { 6, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3606), "/ProjeResimler/Sprite.png", "Sprite", 14m, true, 130, null }
                 });
 
             migrationBuilder.InsertData(
@@ -358,11 +482,11 @@ namespace BurgerMVC.DataLayer.Migrations
                 columns: new[] { "ID", "CreatedTime", "Image", "Name", "Price", "Status", "Stock", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9453), "/ProjeResimler/Patates.jpg", "Patates Kızartması", 12m, true, 350, null },
-                    { 2, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9455), "/ProjeResimler/Tender.png", "Tavuk Tender", 20m, true, 350, null },
-                    { 3, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9457), "/ProjeResimler/sogan.jpg", "Soğan Halkası", 17m, true, 350, null },
-                    { 4, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9458), "/ProjeResimler/Nugget.png", "Nugget", 16m, true, 350, null },
-                    { 5, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9460), "/ProjeResimler/Citir.png", "Çıtır Tavuk", 22m, true, 350, null }
+                    { 1, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3555), "/ProjeResimler/Patates.jpg", "Patates Kızartması", 12m, true, 350, null },
+                    { 2, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3557), "/ProjeResimler/Tender.png", "Tavuk Tender", 20m, true, 350, null },
+                    { 3, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3563), "/ProjeResimler/sogan.jpg", "Soğan Halkası", 17m, true, 350, null },
+                    { 4, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3565), "/ProjeResimler/Nugget.png", "Nugget", 16m, true, 350, null },
+                    { 5, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3566), "/ProjeResimler/Citir.png", "Çıtır Tavuk", 22m, true, 350, null }
                 });
 
             migrationBuilder.InsertData(
@@ -370,10 +494,10 @@ namespace BurgerMVC.DataLayer.Migrations
                 columns: new[] { "ID", "CreatedTime", "Description", "Image", "Name", "Price", "Status", "Stock", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9317), "Burger(Balık+Domates+Peynir+Turşu)+Patates(200 gr)+İçecek(Kola)", "/ProjeResimler/BalikBurger.jpg", "Balık Burger Menu", 100m, true, 250, null },
-                    { 2, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9319), "Burger(2 Köfte+Marul+Peynir+Mayonez)+Patates(200gr)+İçecek(Ice Tea)", "/ProjeResimler/DoubleBurger.jpg", "Double Burger Menu", 95m, true, 250, null },
-                    { 3, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9321), "Burger(Tavuk+Marul+Domates+Çıtır Soğan)+Patates(200gr)+İçecek(Ayran)", "/ProjeResimler/TavukBurger.jpg", "Tavuk Burger Menu", 55m, true, 250, null },
-                    { 4, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9323), "Burger(Siyah Ekmek+240gr Köfte+Turşu+Karamelize Soğan)+Patates(200gr)+İçecek(Fanta)", "/ProjeResimler/BlackBurger.jpg", "Black Burger Menu", 120m, true, 250, null }
+                    { 1, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3442), "Burger(Balık+Domates+Peynir+Turşu)+Patates(200 gr)+İçecek(Kola)", "/ProjeResimler/BalikBurger.jpg", "Balık Burger Menu", 100m, true, 250, null },
+                    { 2, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3445), "Burger(2 Köfte+Marul+Peynir+Mayonez)+Patates(200gr)+İçecek(Ice Tea)", "/ProjeResimler/DoubleBurger.jpg", "Double Burger Menu", 95m, true, 250, null },
+                    { 3, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3446), "Burger(Tavuk+Marul+Domates+Çıtır Soğan)+Patates(200gr)+İçecek(Ayran)", "/ProjeResimler/TavukBurger.jpg", "Tavuk Burger Menu", 55m, true, 250, null },
+                    { 4, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3447), "Burger(Siyah Ekmek+240gr Köfte+Turşu+Karamelize Soğan)+Patates(200gr)+İçecek(Fanta)", "/ProjeResimler/BlackBurger.jpg", "Black Burger Menu", 120m, true, 250, null }
                 });
 
             migrationBuilder.InsertData(
@@ -381,14 +505,14 @@ namespace BurgerMVC.DataLayer.Migrations
                 columns: new[] { "ID", "CreatedTime", "Image", "Name", "Price", "Status", "Stock", "UpdatedTime" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9427), "/ProjeResimler/Ketcap.png", "Ketçap", 3m, true, 250, null },
-                    { 2, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9429), "/ProjeResimler/Acisos.png", "Acı Sos", 3m, true, 350, null },
-                    { 3, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9430), "/ProjeResimler/Barbakü.png", "Barbekü Sosu", 3m, true, 350, null },
-                    { 4, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9432), "/ProjeResimler/Buffalo.png", "Buffalo Sosu", 3m, true, 400, null },
-                    { 5, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9434), "/ProjeResimler/Hardal.png", "Hardal Sosu", 3m, true, 150, null },
-                    { 6, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9436), "/ProjeResimler/Ranch.png", "Ranch Sosu", 3m, true, 650, null },
-                    { 7, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9437), "/ProjeResimler/Mayonez.png", "Mayonez", 3m, true, 220, null },
-                    { 8, new DateTime(2023, 4, 3, 12, 25, 28, 791, DateTimeKind.Local).AddTicks(9439), "/ProjeResimler/Sarımsaklı.png", "Sarımsaklı Mayonez", 3m, true, 345, null }
+                    { 1, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3532), "/ProjeResimler/Ketcap.png", "Ketçap", 3m, true, 250, null },
+                    { 2, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3533), "/ProjeResimler/Acisos.png", "Acı Sos", 3m, true, 350, null },
+                    { 3, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3535), "/ProjeResimler/Barbakü.png", "Barbekü Sosu", 3m, true, 350, null },
+                    { 4, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3536), "/ProjeResimler/Buffalo.png", "Buffalo Sosu", 3m, true, 400, null },
+                    { 5, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3537), "/ProjeResimler/Hardal.png", "Hardal Sosu", 3m, true, 150, null },
+                    { 6, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3538), "/ProjeResimler/Ranch.png", "Ranch Sosu", 3m, true, 650, null },
+                    { 7, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3539), "/ProjeResimler/Mayonez.png", "Mayonez", 3m, true, 220, null },
+                    { 8, new DateTime(2023, 4, 9, 19, 1, 30, 802, DateTimeKind.Local).AddTicks(3541), "/ProjeResimler/Sarımsaklı.png", "Sarımsaklı Mayonez", 3m, true, 345, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -431,39 +555,64 @@ namespace BurgerMVC.DataLayer.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_UserId",
-                table: "Order",
-                column: "UserId");
+                name: "IX_Comments_AppUserId",
+                table: "Comments",
+                column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_DessertID",
-                table: "OrderDetails",
-                column: "DessertID");
+                name: "IX_Comments_DessertId",
+                table: "Comments",
+                column: "DessertId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_DrinkID",
-                table: "OrderDetails",
-                column: "DrinkID");
+                name: "IX_Comments_DrinkId",
+                table: "Comments",
+                column: "DrinkId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_ExtraID",
-                table: "OrderDetails",
-                column: "ExtraID");
+                name: "IX_Comments_ExtraId",
+                table: "Comments",
+                column: "ExtraId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_MenuID",
-                table: "OrderDetails",
-                column: "MenuID");
+                name: "IX_Comments_MenuId",
+                table: "Comments",
+                column: "MenuId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_OrderID",
-                table: "OrderDetails",
-                column: "OrderID");
+                name: "IX_Comments_SauceId",
+                table: "Comments",
+                column: "SauceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_SauceID",
-                table: "OrderDetails",
-                column: "SauceID");
+                name: "IX_DessertOrder_OrdersOrderID",
+                table: "DessertOrder",
+                column: "OrdersOrderID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DrinkOrder_OrdersOrderID",
+                table: "DrinkOrder",
+                column: "OrdersOrderID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ExtraOrder_OrdersOrderID",
+                table: "ExtraOrder",
+                column: "OrdersOrderID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MenuOrder_OrdersOrderID",
+                table: "MenuOrder",
+                column: "OrdersOrderID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_UserID",
+                table: "Orders",
+                column: "UserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderSauce_SaucesID",
+                table: "OrderSauce",
+                column: "SaucesID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -484,13 +633,28 @@ namespace BurgerMVC.DataLayer.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "OrderDetails");
+                name: "Comments");
+
+            migrationBuilder.DropTable(
+                name: "DessertOrder");
+
+            migrationBuilder.DropTable(
+                name: "DrinkOrder");
+
+            migrationBuilder.DropTable(
+                name: "ExtraOrder");
+
+            migrationBuilder.DropTable(
+                name: "MenuOrder");
+
+            migrationBuilder.DropTable(
+                name: "OrderSauce");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Dessert");
+                name: "Desserts");
 
             migrationBuilder.DropTable(
                 name: "Drinks");
@@ -502,7 +666,7 @@ namespace BurgerMVC.DataLayer.Migrations
                 name: "Menus");
 
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Sauce");
